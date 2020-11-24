@@ -1,0 +1,826 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <title>IsaViz/GSS User Manual - Graph Stylesheets</title>
+  <link href="gssman.css" rel="stylesheet" type="text/css" />
+  <meta name="tidy:flags" content="-i -ascii -asxml" />
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+
+<a href="http://www.w3.org/"><img src="../images/w3c_home.gif" alt="w3c_logo" border="0"/></a>
+<a href="http://www.w3.org/RDF/" title="RDF Resource Description Framework">
+<img border="0" src="http://www.w3.org/RDF/icons/rdf_developer_button.40" alt="RDF Resource Description Framework Developer Icon"/></a>
+
+<h1>Graph Stylesheets (GSS) in IsaViz</h1>
+
+<hr />
+
+<h2><a name="TOC"></a>Table of Contents</h2>
+<ol>
+<li><a href="#intro">Introduction</a></li>
+<li><a href="#example">Example</a></li>
+<li><a href="#gssinisv">GSS in IsaViz</a></li>
+<li><a href="#selectors">Selectors</a>
+  <ul>
+    <li><a href="#rsel">Resource Selectors</a></li>
+    <li><a href="#psel">Property Selectors</a></li>
+    <li><a href="#lsel">Literal Selectors</a></li>
+    <li><a href="#ccnstrnts">Complex Constraints</a></li>
+    <li><a href="#casc">Rule Priority and Cascading</a></li>
+  </ul>
+</li>
+<li><a href="#styles">Styling Instructions</a></li>
+<li><a href="#visib">Visibility</a></li>
+<li><a href="#layout">Layout Instructions</a>
+  <ul>
+    <li><a href="#sort">Sorting Properties</a></li>
+  </ul>
+</li>
+<li><a href="#frend">Graphical Front-End</a>
+  <ul>
+    <li><a href="#feov">Overview</a></li>
+    <li><a href="#fesel">Selectors</a></li>
+    <li><a href="#fevis">Visibility and Layout</a></li>
+    <li><a href="#festy">Styles</a></li>
+    <li><a href="#fesort">Sorting</a></li>
+  </ul>
+</li>
+<li><a href="#bib">Bibliography</a></li>
+</ol>
+
+<hr />
+
+<h2><a name="intro"></a>1. Introduction</h2>
+
+<p>Graph Stylesheets are a way to associate style to node-edge representations of RDF models, but also to hide part of the graph and to offer alternative layouts for some elements. This means that based on some selectors (detailed later), it is possible to assign, among other things, color, stroke width, bitmap icons or font style to specific nodes and edges in the graph. It is also possible to hide selected nodes and edges, or to lay them out (along with the node at the other end of the edge) in tables in order to group them in a region of the visualized space.</p>
+
+<p>Graph Stylesheets are themselves expressed in RDF and define their own vocabulary in a namespace with the following URI:</p><div class="center"><strong>http://www.w3.org/2001/11/IsaViz/graphstylesheets#</strong></div><p>which will be bound to prefix <strong>gss:</strong> in the remainder of this document.</p>
+
+<p>A graph stylesheet is made of a set of rules which select resources, properties and literals in an RDF model and assign styling attributes to the graphical entities that represent them in IsaViz (nodes and edges of the node-arc diagram). The left-hand side of a rule is called the selector, while the right-hand style is called the styling instruction set.</p>
+
+<h2><a name="example"></a>2. Example</h2>
+
+<p>Here is a quick example of what GSS can do. The graph in figure 1-a represents part of a plain <a href="http://rdfweb.org/foaf/">foaf</a> document as it is displayed by IsaViz without any styling. Figure 1-b represents the same document, this time applying the <a href="http://www.w3.org/2001/11/IsaViz/gss/foaf/foaf.gss">GSS stylesheet for foaf</a> to it.</p>
+
+<center>
+<table border="1">
+<tr>
+<td>
+<div class="center">
+<a href="../gss/foaf/nostylefoaf.png"><img src="../images/nostylefoaf_th.png" alt="Figure 1-a: a plain foaf model" /></a> <br />
+<p class="figure">Figure 1-a: plain foaf model (<a href="../gss/foaf/nostylefoaf.svg">SVG version</a>)</p>
+</div>
+</td>
+<td>
+<div class="center">
+<a href="../gss/foaf/styledfoaf.png"><img src="../images/styledfoaf_th.png" alt="Figure 1-b: a styled foaf model" /></a> <br />
+<p class="figure">Figure 1-b: same foaf model with GSS styling (<a href="../gss/foaf/styledfoaf.svg">SVG version</a>)</p>
+</div>
+</td>
+</tr>
+</table>
+</center>
+
+<p>The GSS stylesheet for foaf does many things, including:</p>
+<ul>
+  <li>grouping personal and contact information about each individual and organization in a table,</li>
+  <li>retrieving resources typed as <em>foaf:Image</em> and displaying the bitmap found at the resource's URI instead of a simple ellipse (if there is indeed a bitmap icon there),</li>
+  <li>assigning standard icons to resources representing persons, organizations, projects, and hiding <em>rdf:type</em> statements for these resources as this information is conveyed by the node's icon,</li>
+  <li>assigning a file-like shape to resources typed as <em>foaf:Document</em> and, as before, hiding <em>rdf:type</em> statements for these resources as this information is conveyed by the node's shape,</li>
+  <li>assigning different colors and stroke widths to resources, properties and literals depending on their values (e.g. property URI, like <em>foaf:knows</em>), for increased readability of the model.</li>
+</ul>
+
+<p>All the information contained in the model is still explicitly represented in the graph (note that this is not a requirement of GSS, you can choose to hide some statements and not convey the associated information in any other manner). But instead of using a standard node-link-node representation for every statement, the stylesheet tries to convey the information in other ways, which should make the representation easier to understand as it is less cluttered and more intuitive. It is for instance much easier to identify which nodes in the graph represent persons in the styled representation of the model than in the plain representation. In the latter you have to look for nodes which have an outgoing edge pointing to resource <em>foaf:Person</em>, whereas in the styled representation, you just have to look for nodes which use this icon: <img src="../gss/foaf/person.png" alt="image:foaf:person GSS icon" border="0" />.</p>
+
+<p>Figures 1-c and 1-d give another example of what a very simple GSS stylesheet can do. Figure 1-c shows the full model representing the history of <a href="http://www.w3.org/TR/">W3C Technical Reports and Publications</a> in RDF, which is part of the effort to <a href="http://www.w3.org/2002/01/tr-automation/">automate the publication of technical reports</a>. The resources in this model correspond to the different versions of TR documents and are typed according to their status (a working draft, a proposed recommendation, a final recommendation, or a note). Moreover, each document is linked to the one it makes obsolete by an <em>obsoletes</em> property. Each document also has a <em>date</em> Dublin Core property. Figure 1-d</p>
+
+<h2><a name="gssinisv"></a>3. GSS in IsaViz</h2>
+
+<p>GSS Stylesheets in IsaViz are managed through the <em>Stylesheets</em> tab of the <em>Definitions</em> window shown in figure 2. In this window, the user can load any number of stylesheets located on their computer or available publicly on the Web. The sequence of application of these stylesheets is in descending order. This means that in the example of figure 2, <em>coloring.gss</em> will be applied first, then <em>datehiding.gss</em> and finally <em>dateshowing.gss</em>. In case of conflict between rules belonging to different stylesheets, the rule in the stylesheet applied last prevails.</p>
+
+<div class="center">
+<img src="images/ex24.png" alt="Figure 2-a: Stylesheet Management GUI in IsaVIz" /><br />
+<p class="figure">Figure 2-a: Managing Stylesheets in IsaViz</p>
+</div>
+
+<p>Stylesheets are automatically applied to models imported through any command of the File/Import menu. It is also possible to apply the sequence of stylesheets manually using the <em>Apply Stylesheets</em> button.</p>
+
+<p>The position of stylesheets into the sequence can be changed by selecting the stylesheet of interest and then using the two arrows located at the far left of the panel.</p>
+
+<p>GSS being an RDF vocabulary, stylesheets can be created and edited by directly modifying their RDF model. However, a graphical front-end is also available, which allows users to specify styling rules by direct manipulation of visual entities, without having to write a single line of RDF. This front-end, shown in figure 2-b, can be accessed both as a standalone application and through IsaViz by clicking on the <em>Edit Stylesheet</em> button. Read <a href="#frend">Section 8. Graphical Front End</a> for more information.</p>
+
+<div class="center">
+<img src="images/ex35.png" alt="Figure 2-b: GSSEditor, a graphical front-end for creating graph stylesheets" /><br />
+<p class="figure">Figure 2-b: GSS Editor</p>
+</div>
+
+<h2><a name="selectors"></a>4. Selectors</h2>
+
+<p>There are three types of selectors : resource selectors, literal selectors, and property selectors, which each accept different properties describing the constraints that the stylesheet designer wants to express on the entities to select. The selector itself is represented by a b-node (or anonymous node), and must declare a specific rdf:type property.</p>
+
+<h3><a name="rsel"></a>4.1 Resource Selectors</h3>
+
+<p>A resource selector must declare an rdf:type property whose value is class gss:Resource. The following properties can be attached to the selector:</p>
+<ul>
+  <li><strong>gss:uriEquals</strong> specifies an equality constraint on the URI of the resource to select.</li>
+  <li><strong>gss:uriStartsWith</strong> specifies that the URI of the resource(s) to select must begin with the provided URI fragment. This is typically useful to select all resources belonging to the same namespace.</li>
+  <li><strong>gss:subjectOfStatement</strong> specifies constraints on the predicate and the object of a statement whose subject is the resource to select. A use case of this is to select resources which have a specific property, like rdf:type, associated with a specific value.</li>
+  <li><strong>gss:objectOfStatement</strong> specifies constraints on the subject and the predicate of a statement whose object is the resource to select. A use case of this is to select resources which are values of a specific property type.</li>
+</ul>
+
+<p>gss:subjectOfStatement and gss:objectOfStatement are described in detail later.</p>
+
+<p>Figure 3 shows an example of a selector for resource http://claribole.net</p>
+
+<div class="center">
+<img src="images/ex01.png" alt="Figure 3: a GSS selector for resource http://claribole.net" /> <br />
+	<p class="figure">Figure 3: Selecting resource http://claribole.net (<a href="images/ex01.svg">SVG version</a>)</p>
+</div>
+
+<p>Figure 4 shows an example of a selector for resources whose URI belongs to the Dublin Core namespace.</p>
+
+<div class="center">
+<img src="images/ex02.png" alt="Figure 4: a GSS selector for resources in the Dublin Core namespace" /> <br />
+	<p class="figure">Figure 4: Selecting resources in the Dublin Core namespace (<a href="images/ex02.svg">SVG version</a>)</p>
+</div>
+
+<p>All these properties can be combined to create complex selectors. The set of properties associated with a given selector is interpreted as a conjunction of constraints on the resource(s) to select. As a consequence, gss:uriEquals and gss:uriStartsWith cannot appear together and can only appear once. They can however be combined with one or more gss:subjectOfStatement and gss:objectOfStatement properties.</p>
+
+<p><strong>Note: </strong>a resource selector which does not express any constraint will select all resources in the model. However, it still needs to declare an rdf:type property whose value is class gss:Resource.</p>
+
+<h3><a name="psel"></a>4.2 Property Selectors</h3>
+
+<p>A property selector must declare an rdf:type property whose value is class gss:Property. The following properties can be attached to the selector:</p>
+<ul>
+  <li><strong>gss:uriEquals</strong> specifies an equality constraint on the URI of the property to select.</li>
+  <li><strong>gss:uriStartsWith</strong> specifies that the URI of the property(-ies) to select must begin with the provided URI fragment. This is typically useful to select all properties belonging to the same namespace.</li>
+  <li><strong>gss:predicateOfStatement</strong> specifies constraints on the subject and the object of the statement whose predicate is the property to select.</li>
+</ul>
+
+<p>Figure 5 shows an example of a selector for rdf:type properties.</p>
+
+<div class="center">
+<img src="images/ex03.png" alt="Figure 5: a GSS selector for rdf:type properties" /> <br />
+	<p class="figure">Figure 5: Selecting rdf:type properties (<a href="images/ex03.svg">SVG version</a>)</p>
+</div>
+
+<p>Figure 6 shows an example of a selector for properties in the RDFS namespace</p>
+
+<div class="center">
+<img src="images/ex04.png" alt="Figure 6: a GSS selector for properties in the RDFS namespace" /> <br />
+	<p class="figure">Figure 6: Selecting properties in the RDFS namespace (<a href="images/ex04.svg">SVG version</a>)</p>
+</div>
+
+<p>As for resource selectors, gss:uriEquals and gss:uriStartsWith cannot appear together and can only appear once in property selectors. A property being the predicate of exactly one statement, which has exactly one subject and one object, there is at most one gss:predicateOfStatement property attached to a property selector. Again, the set of properties associated with a given selector is interpreted as a conjunction of constraints on the property(-ies) to select.</p>
+
+<h3><a name="lsel"></a>4.3 Literal Selectors</h3>
+
+<p>A literal selector must declare an rdf:type property whose value is class gss:Literal. The following properties can be attached to the selector:</p>
+<ul>
+  <li><strong>gss:value</strong> specifies an equality constraint on the value of the literal(s) to select.</li>
+  <li><strong>gss:datatype</strong> specifies a constraint on the datatype of the literal(s) to select.</li>
+  <li><strong>gss:objectOfStatement</strong> specifies constraints on the subject and the predicate of a statement whose object is the literal to select. A use case of this is to select non-typed literals which are values of a specific property type.</li>
+</ul>
+
+<p>Figure 7 shows an example of a selector for literals typed as xsd:int and whose value is equal to 10.</p>
+
+<div class="center">
+<img src="images/ex05.png" alt="Figure 7: a GSS selector for literals typed as xsd:int and whose value is equal to 10" /> <br />
+	<p class="figure">Figure 7: Selecting integer literals equal to 10 (<a href="images/ex05.svg">SVG version</a>)</p>
+</div>
+
+<p>Figure 8 shows an example of a selector for all plain literals.</p>
+
+<div class="center">
+<img src="images/ex06.png" alt="Figure 8: a GSS selector for all plain literals" /> <br />
+	<p class="figure">Figure 8: Selecting all plain literals (<a href="images/ex06.svg">SVG version</a>)</p>
+</div>
+
+<p>gss:value and gss:datatype can only appear once in a given selector. A literal being the object of exactly one statement, at most one gss:objectOfStatement property can be attached to a literal selector. The set of properties associated with a given selector is interpreted as a conjunction of constraints on the literal(s) to select.</p>
+
+<h3><a name="ccnstrnts"></a>4.4 Complex Constraints</h3>
+
+<p>As mentioned earlier, it is possible to express complex constraints on the type and value of nodes and properties attached to the entity(-ies) that should be selected. This is achieved through the use of gss:subjectOfStatement, gss:objectOfStatement and gss:predicateOfStatement.</p>
+
+<h3>Subject of Statement</h3>
+
+<p><strong>gss:subjectOfStatement</strong> can be used only to select resources. It is used to specify constraints on the predicate and the object of a statement whose subject is the resource to select. gss:subjectOfStatement points to a b-node representing the statement itself. It is then possible to attach the following properties to this node:</p>
+<ul>
+  <li><strong>gss:predicate</strong> specifies a constraint on the property type of the statement.</li>
+  <li><strong>gss:object</strong> points to another b-node, representing the object of the statement, to which the following properties can be attached: 
+	<ul>
+	  <li><strong>gss:class</strong> specifies a constraint on the statement's object type in case the object is a resource (the object should declare an rdf:type property whose value is equal to the one specified in the constraint).</li>
+	  <li><strong>gss:datatype</strong> specifies a constraint on the statement's object datatype in case the object is a literal (the object should be of the same datatype as the one specified in the constraint). Note that special value <strong>gss:PlainLiterals</strong> is used to select plain (untyped) literals, and that special value <strong>gss:TypedLiterals</strong> is used to select any typed literal.</li>
+	  <li><strong>gss:value</strong> specifies an equality constraint on the statement's object URI or literal value, depending on the nature of this node (a resource or a literal).</li>
+	</ul>
+      </li>
+</ul>
+
+<p>Figure 9-a shows an example of a selector for resources declaring an rdf:type property with value rss:channel.</p>
+
+<div class="center">
+<img src="images/ex07a.png" alt="Figure 9-a: a GSS selector for resources declaring an rdf:type property with value rss:channel" /> <br />
+	<p class="figure">Figure 9-a: Selecting all resources typed as rss:channel (<a href="images/ex07a.svg">SVG version</a>)</p>
+</div>
+
+<p>Note that the above example selects only resources which have a property rdf:type whose value is rss:channel. They do not select resources which have a property rdf:type whose value is not rss:channel but which also have another property (different from rdf:type) whose value is rss:channel. In order to specify such a constraint, two different gss:subjectOfStatement properties need to be specified for the selector, as shown in Figure 9-b. This selector would select resources declaring an rdf:type property with value rss:channel, but also, for instance, resources that declare an rdf:type property with value rss:item and another property rdfs:label with value rss:channel, as it meets the constraints as expressed in example 9-b.</p>
+
+<div class="center">
+<img src="images/ex07b.png" alt="Figure 9-b: a GSS selector for resources declaring an rdf:type property  and a property with value rss:channel" /> <br />
+	<p class="figure">Figure 9-b: Selecting all resources declaring an rdf:type property and having a property whose value is rss:channel (<a href="images/ex07b.svg">SVG version</a>)</p>
+</div>
+
+<p class="figure">Figure 10 shows a more complex example. It selects all resources in the http://www.w3.org domain, which declare a dc:title property (title value is not constrained) and a dc:creator property whose value must be &quot;Emmanuel Pietriga&quot;.</p>
+
+<div class="center">
+<img src="images/ex08.png" alt="Figure 10: a GSS selector for resources on the W3C web site created by Emmanuel Pietriga and having a dc:title property" /> <br />
+	<p class="figure">Figure 10: Selecting all resources on the W3C web site created by me and having a dc:title property (<a href="images/ex08.svg">SVG version</a>)</p>
+</div>
+
+<h3>Object of Statement</h3>
+
+<p><strong>gss:objectOfStatement</strong> works similarly to gss:subjectOfStatement. It can be used to select resources or literals, by specifying constraints on the predicate and the subject of a statement whose object is the resource or literal to select. gss:objectOfStatement points to a b-node representing the statement itself. It is then possible to attach the following properties to this node:</p>
+<ul>
+  <li><strong>gss:predicate</strong> specifies a constraint on the property type of the statement.</li>
+  <li><strong>gss:subject</strong> points to another b-node, representing the subject of the statement, to which the following properties can be attached (recall that the subject of a statement is always a resource): 
+	<ul>
+	  <li><strong>gss:class</strong> specifies a constraint on the statement's subject type (the subject should declare an rdf:type property whose value is equal to the one specified in the constraint).</li>
+	  <li><strong>gss:value</strong> specifies an equality constraint on the statement's subject URI.</li>
+	</ul>
+      </li>
+</ul>
+
+<p>Figure 11 gives an example of selector for literals which must be the object of a <em>p3p:imageWidth</em> statement, whose subject must be a resource with a URI equal to http://claribole.net/2003/03/centralpark-4.jpg and belonging to class <em>p3p:Image</em> (the subject must declare a property rdf:type whose value is class p3p:Image)</p>
+
+<div class="center">
+<img src="images/ex09.png" alt="Figure 11: a GSS selector for literals objects of p3p:imageWidth statements" /> <br />
+	<p class="figure">Figure 11: Selecting the literal object of a p3p:imageWidth statement whose subject is a p3p:Image with a specific URI (<a href="images/ex09.svg">SVG version</a>)</p>
+</div>
+
+<p>Figure 12 refines the previous selector by constraining the value and datatype of the literal to be selected.</p>
+
+<div class="center">
+<img src="images/ex10.png" alt="Figure 12: a GSS selector similar to the previous one with additional constraints on the literal itself" /> <br />
+	<p class="figure">Figure 12: Adding constraints on the literal&#8217;s value and datatype (<a href="images/ex10.svg">SVG version</a>)</p>
+</div>
+
+<h3>Predicate of Statement</h3>
+
+<p><strong>gss:predicateOfStatement</strong> can be used to select properties and uses the same constructs as defined earlier. It is used to specify constraints on the subject and the object of a statement whose predicate is the property to select. gss:predicateOfStatement points to a b-node representing the statement itself. It is then possible to attach the following properties to this node:</p>
+<ul>
+  <li><strong>gss:subject</strong> points to another b-node, representing the subject of the statement, to which the following properties can be attached (recall that the subject of a statement is always a resource): 
+	<ul>
+	  <li><strong>gss:class</strong> specifies a constraint on the statement's subject type (the subject should declare an rdf:type property whose value is equal to the one specified in the constraint).</li>
+	  <li><strong>gss:value</strong> specifies an equality constraint on the statement's subject URI.</li>
+	</ul>
+      </li>
+  <li><strong>gss:object</strong> points to another b-node, representing the object of the statement, to which the following properties can be attached: 
+	<ul>
+	  <li><strong>gss:class</strong> specifies a constraint on the statement's object type in case the object is a resource (the object should declare an rdf:type property whose value is equal to the one specified in the constraint).</li>
+	  <li><strong>gss:datatype</strong> specifies a constraint on the statement's object datatype in case the object is a literal (the object should be of the same datatype as the one specified in the constraint). Note that a special value <strong>gss:PlainLiterals</strong> is used to select plain (untyped) literals, and that special value <strong>gss:TypedLiterals</strong> is used to select typed literals.</li>
+	  <li><strong>gss:value</strong> specifies an equality constraint on the statement's object URI or literal value, depending on the nature of this node (a resource or a literal).</li>
+	</ul>
+      </li>
+</ul>
+
+<p>Figure 13 gives a simple example selecting all properties describing resource http://claribole.net</p>
+
+<div class="center">
+<img src="images/ex11.png" alt="Figure 13: a GSS selector for properties describing resource http://claribole.net" /> <br />
+	<p class="figure">Figure 13: Selecting all properties describing resource http://claribole.net (<a href="images/ex11.svg">SVG version</a>)</p>
+</div>
+
+<p>Figure 14 builds upon the previous example and adds a constraint on the class of the statement&#8217;s object.</p>
+
+<div class="center">
+<img src="images/ex12.png" alt="Figure 14: a GSS selector for properties describing resource http://claribole.net and pointing to objects of class p3p:Image" /> <br />
+	<p class="figure">Figure 14: Selecting all properties describing resource http://claribole.net with a value of class p3p:Image (<a href="images/ex12.svg">SVG version</a>)</p>
+</div>
+
+<h3><a name="casc"></a>4.5 Rule Priority and Cascading</h3>
+
+<p>As CSS, GSS supports the cascading of stylesheets. In case of conflict between two rules belonging to different stylesheets, the rule in the stylesheet applied last prevails. In case of conflict between two rules belonging to the same stylesheet, the styling engine computes a weight for the conflicting rules and selects the one with the heaviest weight (a more specific rule will have a higher weight). If the weights are the same, there is no guarantee on which rule will be selected.</p>
+
+<h2><a name="styles"></a>5. Styling Instructions</h2>
+
+<p>We have seen in the previous section how to select resources, properties and literals. We are now going to see how to associate styling attributes to selectors in order to have full styling rules.</p>
+
+<p>First, it is important to note that styling properties are not directly associated with selector nodes. Instead, one or more styling properties can be attached to a style node, which is itself pointed at by one or more selectors using the <strong>gss:style</strong> property, thus enabling the reuse of already defined styles. As shown in figure 15, a selector can also make use of more than one style node.</p>
+
+<div class="center">
+<img src="images/ex13.png" alt="Figure 15: GSS selectors sharing style nodes" /> <br />
+	<p class="figure">Figure 15: Sharing styling instructions between selectors (<a href="images/ex13.svg">SVG version</a>)</p>
+</div>
+
+<p>Since they are visually represented by different kinds of graphical objects (basically nodes and edges), different styling properties can be associated with resources, literals and properties. We are first going to take a look at the core styling properties which can be applied to all of them.</p>
+
+<h3>Core Styling Properties</h3>
+
+<p>The core styling properties can be applied to resources, literals and properties. Most of them are inspired from <a href="http://www.w3.org/Style/CSS/">CSS</a> and accept the same values as defined by the <a href="http://www.w3.org/TR/REC-CSS2/">CSS 2 Specification</a>. In all the following examples, we use very simple selectors for the sake of clarity ; any selector, no matter its complexity, can of course be associated with style nodes.</p>
+
+<h4>Stroke Color</h4>
+
+<p>The stroke color corresponds to the node&#8217;s border color for resources and literals and to the edge&#8217;s color for properties. As figure 16 shows, it is specified using the <strong>gss:stroke</strong> property and can take any CSS2 color value such as:</p>
+<ul>
+  <li>black &nbsp;&nbsp;&nbsp;(all <a href="http://www.w3.org/TR/SVG/types.html#ColorKeywords">color keyword names</a> defined in the <a href="http://www.w3.org/TR/SVG/">SVG 1.0 Recommendation</a> are allowed)</li>
+  <li>rgb(123,43,255)</li>
+  <li>rgb(50%,60%,70%)</li>
+  <li>#FB0</li>
+  <li>#43FFA6</li>
+</ul>
+
+<div class="center">
+<img src="images/ex14.png" alt="Figure 16: Stylesheet for changing the stroke color and width of all resource nodes" /><br />
+<p class="figure">Figure 16: Stylesheet for changing the stroke color and width of all resource nodes (<a href="images/ex14.svg">SVG version</a>)</p>
+</div>
+
+<h4>Stroke Width and Pattern</h4>
+
+<p>The stroke width corresponds to the node&#8217;s border width for resources and literals and to the edge&#8217;s thickness for properties. As figure 16 shows, it is specified using the <strong>gss:stroke-width</strong> property and takes any positive numerical value. The only length unit supported for now is pixels (&#8217;px&#8217;, which can be omitted). Figure 17-a shows the standard representation of a simple RDF model in IsaViz ; figure 17-b shows the same model, this time applying the stylesheet defined in figure 16.</p>
+
+<center>
+<table>
+  <tr>
+    <td align="center"><img src="images/ex15a.png" alt="Figure 17-a: Model without stylesheet" /></td>
+    <td align="center"><img src="images/ex15b.png" alt="Figure 17-b: Model with stylesheet" /><br /></td>
+  </tr>
+  <tr>
+    <td align="center"><p class="figure">Figure 17-a: Model rendered without the stylesheet (<a href="images/ex15a.svg">SVG version</a>)</p></td>
+    <td align="center"><p class="figure">Figure 17-b: Model rendered with the stylesheet (<a href="images/ex15b.svg">SVG version</a>)</p></td>
+  </tr>
+</table>
+</center>
+
+
+<p>Aside from the width, it is also possible to change the pattern used to paint edges and nodes' border using <strong>gss:stroke-dasharray</strong>. This property is inspired from the <a href="http://www.w3.org/TR/SVG/painting.html#StrokeProperties">SVG stroke-dasharray property</a> and controls the pattern of dashes and gaps used to paint the node borders and edges. Its default value is <strong>gss:Solid</strong> (figure 17-a and 17-b), but the property can also take one of the following values:</p>
+<ul>
+  <li><strong>gss:Dashed</strong> creates a dashed border/edge (figure 17-c),</li>
+  <li><strong>gss:Dotted</strong> creates a dashed border/edge (figure 17-d),</li>
+  <li>or any literal containing a list of comma-separated positive float values with no unit identifier (figure 17-e).</li>
+</ul>
+
+<center>
+<table border="1">
+  <tr>
+    <td align="center"><img src="images/ex15c1.png" alt="Figure 17-c: stylesheet f" /></td>
+    <td align="center"><img src="images/ex15c2.png" alt="Figure 17-c: dashed edge" /><br /></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><p class="figure">Figure 17-c: assigning a dashed pattern to properties (<a href="images/ex15c1.svg">SVG version</a>) and  (<a href="images/ex15c2.svg">SVG version</a>)</p></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="images/ex15d1.png" alt="Figure 17-d: " /></td>
+    <td align="center"><img src="images/ex15d2.png" alt="Figure 17-d: dotted edge" /><br /></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><p class="figure">Figure 17-d: assigning a dotted pattern to properties (<a href="images/ex15d1.svg">SVG version</a>) and  (<a href="images/ex15d2.svg">SVG version</a>)</p></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="images/ex15e1.png" alt="Figure 17-e: " /></td>
+    <td align="center"><img src="images/ex15e2.png" alt="Figure 17-e: variable dash pattern" /><br /></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><p class="figure">Figure 17-e: assigning a custom pattern to properties (<a href="images/ex15e1.svg">SVG version</a>) and  (<a href="images/ex15e2.svg">SVG version</a>)</p></td>
+  </tr>
+</table>
+</center>
+
+<h4>Fill Color</h4>
+
+<p>As shown in figure 18, the fill color corresponds to the node&#8217;s interior color. It is specified using the <strong>gss:fill</strong> property and, as gss:stroke, can take any CSS2 color value. Note that in the case of property selectors, the fill color has an effect only if the property is laid out as part of a table grouping properties (see <a href="#layout">Layout Instructions</a>). It then defines the interior color of the table cell representing the property.</p>
+
+<div class="center">
+<img src="images/ex18.png" alt="Figure 18: Stylesheet defining a stroke color and a fill color" /><br />
+<p class="figure">Figure 18: Stylesheet defining a stroke color and a fill color for resources in the http://www.w3.org/ domain, and for all literals (<a href="images/ex18.svg">SVG version</a>)</p>
+</div>
+
+<p>Figure 19 gives an example of a model rendered using the stylesheet from figure 18.</p>
+
+<div class="center">
+<img src="images/ex19.png" alt="Figure 19: Result of the application of the stylesheet from figure 18 to a model" /><br />
+<p class="figure">Figure 19: Application of the stylesheet from figure 18 to a model (<a href="images/ex19.svg">SVG version</a>)</p>
+</div>
+
+<h4>Font</h4>
+
+<p>As shown in figure 20, it is possible to change several properties of the font used to render the text labels associated with nodes and edges. Four properties are supported and accept the same values as defined by the <a href="http://www.w3.org/TR/REC-CSS2/">CSS 2 Specification</a>:</p>
+<ul>
+  <li><strong>gss:font-family</strong> is used to change the font family used to render the text. Examples of font families are <em>Arial</em>, <em>Courier</em> or <em>Times</em>. Generic CSS font families (<em>serif</em>, <em>sans-serif</em>, <em>monospace</em>, <em>cursive</em>, <em>fantasy</em>) are not yet supported. The current implementation does not accept a list of font families, but only a single family. Support for these two features (generic font families and list of families) should be added soon.</li>
+  <li><strong>gss:font-size</strong> is used to change the font size used to render the text. The value must be a positive integer in points (&#8217;pt&#8217;, which can be omitted).</li>
+  <li><strong>gss:font-weight</strong> is used to change the font weight of the text. Almost all CSS values are allowed: <em>normal</em>, <em>bold</em>, <em>100</em>, <em>200</em>, <em>300</em>, <em>400</em>, <em>500</em>, <em>600</em>, <em>700</em>, <em>800</em>, <em>900</em>, except <em>bolder</em> and <em>lighter</em> which make no sense in the context of GSS. Note that most fonts do not offer so many alternatives and that some values might not be available. <em>Normal</em>, which corresponds to <em>400</em> and <em>bold</em>, which corresponds to <em>700</em> are usually available.</li>
+  <li><strong>gss:font-style</strong> is used to change the font style of the text. Three values are allowed: <em>normal</em>, <em>italic</em>, <em>oblique</em>. Note that in many cases <em>italic</em> and <em>oblique</em> will look the same.</li>
+</ul>
+
+<div class="center">
+<img src="images/ex16.png" alt="Figure 20: Stylesheet" /><br />
+<p class="figure">Figure 20: Stylesheet for changing the font properties of resources, literals and properties (<a href="images/ex16.svg">SVG version</a>)</p>
+</div>
+
+<p>Figure 21-a shows a model with the default font used for all labels. Figure 21-b shows the same model displayed using the stylesheet from figure 20.</p>
+
+<div class="center">
+<img src="images/ex17a.png" alt="Figure 21-a: Model without stylesheet" /><br />
+<p class="figure">Figure 21-a: Model without stylesheet (<a href="images/ex17a.svg">SVG version</a>)</p>
+<img src="images/ex17b.png" alt="Figure 21-b: Model with stylesheet" /><br />
+<p class="figure">Figure 21-b: Model with stylesheet (<a href="images/ex17b.svg">SVG version</a>)</p>
+</div>
+
+<h3>Additional Styling Properties for Resources and Literals</h3>
+
+<p>In addition to the core styling properties, GSS features three other properties that can only be applied to the nodes of the graphs (i.e. to resources and literals): <strong>gss:text-align</strong>, <strong>gss:icon</strong> and <strong>gss:shape</strong>.</p>
+
+<h4>Text Alignment</h4>
+
+<p>The <strong>gss:text-align</strong> property makes it possible to change the position of the label with respect to the associated node. The default position for the label is to be centered inside the node. This property can take the following values:</p>
+<ul>
+  <li><strong>gss:Center</strong>: the label is centered inside the node</li>
+  <li><strong>gss:Above</strong>: the label is above the node</li>
+  <li><strong>gss:Below</strong>: the label is below the node</li>
+  <li><strong>gss:Left</strong>: the label is on the left side of the node and does not cross its boundary</li>
+  <li><strong>gss:Right</strong>: the label is on the right side of the node and does not cross its boundary</li>
+</ul>
+
+<p>Aligning the text outside the node is especially useful when using custom shapes that do not adapt their width to the label's length (see below). Figures 26 and 27 give an example of use of this property.</p>
+
+<h4><a name="ndsh"></a>Node Shape</h4>
+
+<p>By default, all resource nodes are represented by ellipses, and all literal nodes are represented by rectangles, as this is the convention found in many documents like the <a href="http://www.w3.org/TR/1999/REC-rdf-syntax-19990222">RDF Model and Syntax Specification</a>, the <a href="http://www.w3.org/TR/rdf-syntax-grammar/">RDF/XML Syntax Specification (Revised)</a> or the <a href="http://www.w3.org/TR/rdf-concepts/">RDF: Concepts and Abstract Data Model</a>.</p>
+
+<p>However, it is possible to change the shape of resource and literal nodes using the <strong>gss:shape</strong> property (we will see in a later section that it is also possible to use bitmap icons as node shapes). The user can choose to use predefined shapes, by setting one of the following resources as the value of this property:</p>
+<ul>
+  <li><strong>gss:Ellipse</strong> which is the default shape for resources,</li>
+  <li><strong>gss:Rectangle</strong> which is the default shape for literals,</li>
+  <li><strong>gss:RoundRectangle</strong></li>
+</ul>
+<p>or one of the following, knowing that in each of these cases the node's width is not adjusted to fit the entire label, but remains approximately equal to the node's height:</p>
+<ul>
+  <li><strong>gss:Circle</strong></li>
+  <li><strong>gss:Diamond</strong></li>
+  <li><strong>gss:Octagon</strong></li>
+  <li><strong>gss:TriangleNorth</strong> (triangle pointing upward)</li>
+  <li><strong>gss:TriangleSouth</strong> (triangle pointing downward)</li>
+  <li><strong>gss:TriangleEast</strong> (triangle pointing to the right)</li>
+  <li><strong>gss:TriangleWest</strong> (triangle pointing to the left)</li>
+</ul>
+
+<p>Figure 22-a shows a stylesheet assigning a triangular shape to all literals typed as integers. Figure 22-b gives an example of a model rendered using this stylesheet.</p>
+
+<div class="center">
+<img src="images/ex20.png" alt="Figure 22-a: Assigning a triangular shape to all literals typed as xsd:int" /><br />
+<p class="figure">Figure 22-a: Assigning a triangular shape to all literals typed as integers (<a href="images/ex20.svg">SVG version</a>)</p>
+</div>
+
+<div class="center">
+<img src="images/ex20b.png" alt="Figure 22-b: Assigning a triangular shape to all literals typed as xsd:int" /><br />
+<p class="figure">Figure 22-b: Literals typed as integers represented as triangles (<a href="images/ex20b.svg">SVG version</a>)</p>
+</div>
+
+<p>Aside from predefined shapes, it is also possible to define custom shapes, following the Glyph model described in [<a href="#ref1">1</a>], [<a href="#ref2">2</a>] and [<a href="#ref3">3</a>]. Basically, as shown in figures 23 and 24, this model represents a shape as a list of normalized float numbers (between 0.0 and 1.0) which each represent the distance from the center of the shape's bounding circle to a vertex (0.0 means that the vertex coincides with the center of the bounding circle, 1.0 means that the vertex is on the bounding circle). The angle between each vertex is constant and equal to 2*Pi/N radians where N represents the number of vertices. In GSS, a shape represented using this model is encoded in a literal value which consists of a list of normalized floats between square brackets (each representing the distance from the center to a vertex) plus an optional float number in range [0,2*Pi/N] representing the orientation of the shape (considered equal to 0 if not specified). The shape&#8217;s value in figure 23 corresponds to the shape in figure 24. IsaViz provides a graphical front end for specifying Graphical Stylesheets, so that users do not have to author GSS directly in RDF if they do not want to. This front end makes use of the ZVTM Glyph Factory widget (provided by the <a href="http://zvtm.sourceforge.net">ZVTM graphical toolkit</a> upon which IsaViz relies) to allow the user to specify custom shapes by direct manipulation. Figure 25 gives an example of a model rendered using the stylesheet from figure 23.</p>
+
+<div class="center">
+<img src="images/ex21.png" alt="Figure 23: Assigning a custom shape to all literals typed as xsd:int" /><br />
+<p class="figure">Figure 23: Assigning a custom shape to all literals typed as integers (<a href="images/ex21.svg">SVG version</a>)</p>
+</div>
+
+<div class="center">
+<img src="images/ex22.png" alt="Figure 24: ZVTM Glyph Factory Java/Swing Widget" /><br />
+<p class="figure">Figure 24: ZVTM Glyph Factory</p>
+</div>
+
+<div class="center">
+<img src="images/ex23.png" alt="Figure 25: Custom shape for literals typed as integers" /><br />
+<p class="figure">Figure 25: Custom shape for literals typed as integers (<a href="images/ex23.svg">SVG version</a>)</p>
+</div>
+
+<p>Custom shapes can also be specified using an SVG-like list of (x,y) coordinates for polygons. The list has to be enclosed inside curly braces {} and each x,y couple is separated from the next one by a semi-colon. More formally, the list must match <strong>A</strong> (there must be at least three (x,y) couples to define a polygon):</p>
+<table>
+<tr><td><strong>A -&gt; L</strong></td></tr>
+<tr><td><strong>L -&gt; '{' CC '}'</strong></td></tr>
+<tr><td><strong>CC -&gt; C1 ';' C1 ';' C1 | C1 ';' C1 ';' C1 ';' C2</strong></td></tr>
+<tr><td><strong>C1 -&gt; X ',' Y</strong></td></tr>
+<tr><td><strong>C2 -&gt; C1 C2 | C1 </strong></td></tr>
+<tr><td><strong>X -&gt; integer</strong></td></tr>
+<tr><td><strong>Y -&gt; integer</strong></td></tr>
+</table>
+
+<p>You must provide absolute coordinates for each (x,y) couple. Note that these only serve to define the polygon's aspect. Eventually, the polygon's size and location will be computed by GraphViz/dot and adjusted by IsaViz to fit in the graph. But its aspect will remain the same. This means that in the example of figure 26, specifying the following list of coordinates would have produced the same result, as both lists contain proportional coordinates:</p>
+<div class="center">
+<p><strong>{40,-60;40,30;10,60;-60,60;-60,-60}</strong></p>
+</div>
+
+<div class="center">
+<img src="images/ex25.png" alt="Figure 26: Assigning a custom polygon to all resource nodes and placing their label below them" /><br />
+<p class="figure">Figure 26: Assigning a custom polygon to all resource nodes and placing their label below them (<a href="images/ex25.svg">SVG version</a>)</p>
+</div>
+
+<div class="center">
+<img src="images/ex26.png" alt="Figure 27: Custom shape for literals typed as integers" /><br />
+<p class="figure">Figure 27: Custom shape (<a href="images/ex26.svg">SVG version</a>)</p>
+</div>
+
+<p>There is currently no graphical front end for specifying such polygons.</p>
+
+<p><strong>Note:</strong> as for gss:Circle and other shapes, the width of custom shapes is not adjusted to fit the entire label (although you can manually resize the nodes using the move/resize tool, represented by this icon: <img src="../images/Resize24b.gif" alt="image:Move/resize icon" border="0" />). If the label is too wide to fit inside the shape, it crosses the shape&#8217;s boundary. This can be aesthetically unpleasant, so it is better to use these shapes in combination with a <strong>gss:text-align</strong> property that puts the label out of the shape (e.g. <strong>gss:Below</strong>), unless you are sure that the associated labels will always be short (e.g. small integers).</p>
+
+<h4><a name="bmpic"></a>Bitmap Icon</h4>
+
+<p>In addition to custom and predefined shapes, it is also possible to use bitmap icons as node shapes using the <strong>gss:icon</strong> property. Icons can be assigned statically, by specifying a URI pointing to a bitmap image, or dynamically by using a special instruction named <strong>gss:Fetch</strong>. When the GSS engine encounters this instruction, it retrieves the content pointed at by the resource's URI and tries to instantiate it as a bitmap icon. If the process is successful, the icon becomes the node's shape. If it fails, the node is represented using the default ellipse shape.</p>
+
+<p>Figure 28 shows a fragment of the GSS stylesheet for foaf. This fragment contains two selectors. The first one selects resources of type <strong>foaf:Organization</strong> and assigns them an icon statically defined as being at this URI:</p>
+<div class="center"><p><strong>http://www.w3.org/2001/11/IsaViz/gss/foaf/org.png</strong></p></div>
+<p>The second selector selects resources of type <strong>foaf:Image</strong> and tells the GSS engine to retrieve the content of the selected resource dynamically (when actually applying the stylesheet to the model) and to instantiate it as a bitmap image. Therefore, when applied to the model in figure 29, the stylesheet assigns <strong>org.png</strong> to the resource on the left, which is a <strong>foaf:Organization</strong>, and retrieves the content pointed at by resource <a href="http://www.w3.org/Icons/w3c_home.png">http://www.w3.org/Icons/w3c_home.png</a>. It tries to instantiate this content as a bitmap image, succeeds, and displays it as an icon, in this case the W3C logo.</p>
+
+<p><strong>Note:</strong> the stylesheet does many other things, like hiding rdf:type statements and aligning text labels. You can <a href="http://www.w3.org/2001/11/IsaViz/gss/foaf/foaf.gss">download the GSS stylesheet for foaf</a> and have a look at the whole set of selectors and styling instructions.</p>
+
+<div class="center">
+<img src="images/ex27.png" alt="Figure 28: A fragment of the GSS stylesheet for foaf, assigning icons to some resources of type foaf:Organization and foaf:Image" /><br />
+<p class="figure">Figure 28: A fragment of the GSS stylesheet for foaf, assigning icons to resources of type foaf:Organization and foaf:Image (<a href="images/ex27.svg">SVG version</a>)</p>
+</div>
+
+<div class="center">
+<img src="images/ex28.png" alt="Figure 29: Bitmap icons as node shapes in a foaf document" /><br />
+<p class="figure">Figure 29: Bitmap icons as node shapes in a foaf document (<a href="images/ex28.svg">SVG version</a>)</p>
+</div>
+
+<h2><a name="visib"></a>6. Visibility</h2>
+
+<p>Aside from styling instructions, GSS also features properties to hide selected resources, properties and literals. <strong>Visibility properties are attached directly to selectors, not to style nodes</strong>. There are two visibility properties, inspired by CSS:</p>
+<ul>
+  <li><strong>gss:visibility</strong> can take the value <em>gss:Visible</em> or <em>gss:Hidden</em>,</li>
+  <li><strong>gss:display</strong> can take the value <em>gss:None</em>.</li>
+</ul>
+
+<p>Although everything is visible by default, <em>gss:visibility=visible</em> is interesting if you want to show something that is being hidden by a stylesheet applied prior to the one you are defining (we have seen earlier that, as CSS stylesheets, GSS stylesheets can be cascaded).</p>
+
+<p><em>gss:visibility=gss:Hidden</em> and <em>gss:display=gss:None</em> both hide the entities they select. The difference between the two is that <em>gss:visibility=gss:Hidden</em> hides entities after the layout process has occurred, whereas <em>gss:display=gss:None</em> hides them before computing the graph layout. This means that in the first case the layout is not impacted by the fact that some entities are hidden (hidden entities occupy space, even though they are not visible), whereas in the second case the layout is changed (hidden entities are not taken into account in the layout computation, resulting in a more compact graph). The following figures illustrate this difference.</p>
+
+<table border="1">
+  <tr>
+    <td align="center">Initial Representation (nothing hidden)</td>
+    <td align="center"><img src="images/visdem1.png" alt="Full RDF graph" /><br />(<a href="images/visdem1.svg">SVG version</a>)</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="images/visdem5.png" alt="GSS literal selector with property visibility=hidden" /><br />(<a href="images/visdem5.svg">SVG version</a>)<br /><br /><br />visibility=hidden</td>
+    <td align="center"><img src="images/visdem2.png" alt="Same RDF graph with all literals hidden but same layout" /><br />(<a href="images/visdem2.svg">SVG version</a>)</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="images/visdem4.png" alt="GSS literal selector with property display=none" /><br />(<a href="images/visdem4.svg">SVG version</a>)<br /><br /><br />display=none</td>
+    <td align="center"><img src="images/visdem3.png" alt="Same RDF graph with all literals hidden and tighter layout " /><br />(<a href="images/visdem3.svg">SVG version</a>)</td>
+  </tr>
+</table>
+
+
+<h2><a name="layout"></a>7. Layout Instructions</h2>
+
+<p>In IsaViz, the default way to represent RDF models, which are structured as directed graphs, is to draw them as node-link diagrams. This method works well for conveying the graph structure of the models, but has some drawbacks. For instance, depending on the initial layout computed by GraphViz/dot, some resources can have properties whose values are far from one another, making it difficult to get a summary/overview of all of them without unzooming and thus loosing relevant details. To address this problem, IsaViz provides a textual <em>Property Browser</em> that groups all property-value pairs associated with a specific resource subject in a single window (figure 30).</p>
+
+<div class="center">
+<img src="../images/propbrw.png" alt="Figure 30: IsaViz property browser" /><br />
+<p class="figure">Figure 30: IsaViz Property Browser</p>
+</div>
+
+<p>This solution works fine, but is not entirely satisfactory as it involves additional actions from the user to display the properties. Moreover it requires her to switch from one window to the other, and the Property Browser is not tightly coupled to the main graphical representation. GSS offers an alternative solution by making it possible to group some or all of the properties associated with a subject resource in a table inside the graph.</p>
+
+<p>The <strong>gss:layout</strong> property can take two values:</p>
+<ul>
+  <li><strong>gss:Table</strong> which specifies that the selected entity should be represented in a table,</li>
+  <li><strong>gss:NodeAndArc</strong> which specifies that the selected entity should be represented using the standard arc and node layout (this is the default layout ; it can be used to override table layout instructions set in stylesheets applied upward).</li>
+</ul>
+
+<p>Figures 31-a and 31-b show the same simple model using <strong>gss:NodeAndArc</strong> and <strong>gss:Table</strong> respectively.</p>
+
+<center>
+<table border="1">
+<tr>
+<td>
+<div class="center">
+<img src="images/ex31a.png" alt="Figure 31-a: node and arc layout" /> <br />
+<p class="figure">Figure 31-a: node and arc layout (<a href="images/ex31a.svg">SVG version</a>)</p>
+</div>
+</td>
+<td>
+<div class="center">
+<img src="images/ex31b.png" alt="Figure 31-b: table layout" /> <br />
+<p class="figure">Figure 31-b: table layout (<a href="images/ex31b.svg">SVG version</a>)</p>
+</div>
+</td>
+</tr>
+</table>
+</center>
+
+<p><strong>As with visibility properties, layout properties are attached directly to selectors, not to style nodes.</strong> The constraints on this GSS property are a little more complex than for the previous ones, and depend on what type of entity they are applied to (resource, literal or property), so it is worth clarifying them. First, for each resource, there can only be one table. Not all properties need to be grouped inside the table, but those which are will be in the same table. Other constraints depend on what type of entity the instruction is applied to.</p>
+
+<h3>gss:layout combined with property selectors</h3>
+
+<p>A table layout instruction associated with a property selector will put the statement's property and corresponding object inside the subject's table, no matter what this subject is. This will occur only if the object is a literal, or if it is a resource which is the object of at most one statement (the one being selected) and which is the subject of no statement.</p>
+
+<h3>gss:layout combined with literal selectors</h3>
+
+<p>A table layout instruction associated with a literal selector will put the literal and the property which has this literal as object inside the subject's table, no matter what this subject is. This should always work, as literals are always the object of a single statement and cannot be the subject of any statement.</p>
+
+<h3>gss:layout combined with resource selectors</h3>
+
+<p>A table layout instruction associated with a resource selector will put the resource and the property which has this resource as object inside the subject's table. This will only work if the resource is the object of exactly one statement and is the subject of no statement.</p>
+
+<p>Of course, all GSS styling instructions like <strong>gss:fill</strong> or <strong>gss:font-size</strong> can be used in combination with the table layout.</p>
+
+<p>Figures 32-a through 32-c give examples of GSS rules using the <strong>gss:table</strong> instruction. The stylesheet in figure 32-a requests that all literals in the model (and their associated properties) be laid out in tables. The stylesheet in figure 32-b requests that all properties (and associated objects) in the foaf namespace be laid out in tables. The stylesheet in figure 32-c requests that all resources which are the object of a <strong>foaf:homepage</strong> statements be laid out in tables. Note that according to the constraints mentioned earlier, this will actually only happen for object resources which are the object of no other statement, and which are the subject of no statement whatsoever. This last stylesheet also assigns fill and stroke colors to the objects.</p>
+
+<center>
+<table border="0">
+<tr>
+<td>
+<div class="center">
+<img src="images/ex32a.png" alt="Figure 32-a: an RDF model" />
+</div>
+</td>
+<td>
+<div class="center">
+<img src="images/ex32b.png" alt="Figure 32-b: the same model with some arcs and nodes hidden" />
+</div>
+</td>
+<td>
+<div class="center">
+<img src="images/ex32c.png" alt="Figure 32-c: the same model with the same arcs and nodes hidden, in a more compact layout (filling the gaps left by hidden arcs and nodes)" />
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="center">
+<p class="figure">Figure 32-a:  (<a href="images/ex32a.svg">SVG version</a>)</p>
+</div>
+</td>
+<td>
+<div class="center">
+<p class="figure">Figure 32-b:  (<a href="images/ex32b.svg">SVG version</a>)</p>
+</div>
+</td>
+<td>
+<div class="center">
+<p class="figure">Figure 32-c:  (<a href="images/ex32c.svg">SVG version</a>)</p>
+</div>
+</td>
+</tr>
+</table>
+</center>
+
+<h3><a name="sort"></a>7.1 Sorting Properties</h3>
+
+<p>Properties laid out in tables can be sorted using <strong>gss:sortPropertiesBy</strong>. This GSS instruction can only be associated with resource selectors, as the sorting is obviously done with respect to subjects of statements, which can only be resources. This property accepts four values:</p>
+<ul>
+  <li><strong>gss:Name</strong>, which sorts properties in the table based on their local name (without taking the namespace into account)</li>
+  <li><strong>gss:NameReversed</strong>, which does the same thing as <strong>gss:Name</strong> in the inverse order</li>
+  <li><strong>gss:Namespace</strong>, which sorts properties based on their namespace (properties belonging to the same namespace are further sorted by their local name)</li>
+  <li><strong>gss:NamespaceReversed</strong>, which does the same thing as <strong>gss:Namespace</strong> in the inverse order</li>
+</ul>
+
+<p>Figure 33 gives an example of sorting properties associated with resources of type <strong>foaf:Person</strong> by namespace.</p>
+
+<div class="center">
+<img src="images/ex33.png" alt="Figure 33: Sorting properties by namespace" /> <br />
+<p class="figure">Figure 33: Sorting properties by namespace (<a href="images/ex33.svg">SVG version</a>)</p>
+</div>
+
+<p>GSS also lets you specify custom orderings by enumerating the properties using <strong>rdf:Seq</strong>, as shown in figure 34. If the GSS engine encounters properties in a table, which are not present in the enumeration, these are simply put at the end of the table.</p>
+
+<div class="center">
+<img src="images/ex34.png" alt="Figure 34: Sorting properties according to an enumeration" /> <br />
+<p class="figure">Figure 34: Sorting properties according to an enumeration (<a href="images/ex34.svg">SVG version</a>)</p>
+</div>
+
+<h2><a name="frend"></a>8. Graphical Front End</h2>
+
+<p>GSS being an RDF vocabulary, you can edit Graph Stylesheets as you would edit any other RDF model, using IsaViz or any other textual/visual RDF editor. However, because of the complexity inherent to the fact that GSS is based on RDF, this can quickly become cumbersome as stylesheets grow. To address this problem, IsaViz features a graphical front-end called <strong>GSS Editor</strong> that makes it possible to edit stylesheets visually without having to write a single line of RDF. GSS Editor can be accessed through IsaViz by clicking on the <em>Edit Stylesheet</em> button after having selected a stylesheet in the <em>Definition</em> window's stylesheet list, or as a standalone application using one of the provided launch scripts (<em>gssedit.bat</em> or <em>gssedit.sh</em>). The main Java class to call is :</p>
+
+<p style="text-align:center"><strong>org.w3c.IsaViz.GSSEditor</strong></p>
+
+<h3><a name="feov"></a>8.1 Overview</h3>
+
+<p>GSS Editor's interface, shown in figure 35, can seem a little daunting at first, but reading this section should make it clearer, provided that you have a general understanding of what is GSS and how it works (in other words, that you have read the previous sections). Note that in many text fields, you can use prefix bindings instead of full URIs, as long as these bindings have been declared in IsaViz's <em>Definition</em> window (<em>Namespaces</em> tab).</p>
+
+<div class="center">
+<img src="images/ex35.png" alt="Figure 35: GSSEditor, a graphical front-end for creating graph stylesheets" /><br />
+<p class="figure">Figure 35: GSS Editor</p>
+</div>
+
+<p>The GUI is composed of two main panels: the lower panel, <em>Styles</em>, contains style declarations ; the upper panel is itself made of three tabbed panels called <em>Resources</em>, <em>Literals</em> and <em>Properties</em>, which hold GSS Selector declarations for the three kinds of entities. The <em>Resources</em> panel is slightly more complicated than the other two, as it features yet another subpanel called <em>Custom Enumerations</em> which is used to declare property enumerations used to sort the properties laid out in tables.</p>
+
+<h3><a name="fesel"></a>8.2 Selectors</h3>
+
+<p>The <em>Resources</em>, <em>Literals</em> and <em>Properties</em> panels all work in essentially the same way. A GSS Selector (which corresponds to the left-hand side of a GSS rule) is composed of constraint declarations. Only entities meeting all the constraints declared by a selector will be selected by it. In <em>GSS Editor</em>, selectors are grouped into three tables (one in each of the above-mentioned panels) depending on what kind of entity they select (resources, properties or literals). In each of these tables, selectors are composed of a mandatory gray line, plus zero or more white lines which hold constraint declarations (called <strong>conditions</strong>) for the selector. A selector can of course be composed of more than one condition. Some conditions, like <em>subject of a statement</em>, are refined by subconditions, specified in the second column. In any case, the value associated with the condition is specified in the third column. The remaining columns are used, as we will see later, to associate styling, visibility, layout and sorting instructions with selectors. Conditions and whole selectors can be added or removed using the four buttons at the top of each selector panel.</p>
+
+<p>Figure 36 gives an example of two resource selectors. The first one declares an equality constraint on the URI of the resource(s) to be selected (this will generate a <strong>gss:uriEquals</strong> property for this selector). The second one declares two selection conditions: the resource(s) must be the subject of an <em>rdf:type</em> statement, and the value of this statement must be <em>http://xmlns.com/foaf/0.1/Image</em>.</p>
+
+<div class="center">
+<img src="images/ex36.png" alt="Figure 36: two resource selectors" /><br />
+<p class="figure">Figure 36: Resource Selectors in GSS Editor</p>
+</div>
+
+<p>Note that a selector composed of only a gray line will select every resource (or literal or property, depending on the table to which it belongs), as no condition is associated with it. Note also the following important subtilty: the selectors expressed in figures 37-a and 37-b are different. The first selector requires both conditions to be met by the same statement (property type and value), whereas the second one only requires that the resource be the subject of an <em>rdf:type</em> property and that one of the properties associated with the resource to be selected has a value of <em>http://xmlns.com/foaf/0.1/Image</em>. In other words, the first selector will only select resources which are the subject of an <em>rdf:type</em> property whose value is <em>http://xmlns.com/foaf/0.1/Image</em>, whereas the second selector will select resources which are the subject of an <em>rdf:type</em> statement, no matter its value as long as one of the statements which have this resource as subject has value <em>http://xmlns.com/foaf/0.1/Image</em> (this can, but need not be, the <em>rdf:type</em> statement).</p>
+
+<div class="center">
+<img src="images/ex37a.png" alt="Figure 37-a: two resource selectors" /><br />
+<p class="figure">Figure 37-a: Resource Selectors in GSS Editor</p>
+<img src="images/ex37b.png" alt="Figure 37-b: two resource selectors" /><br />
+<p class="figure">Figure 37-b: Resource Selectors in GSS Editor</p>
+</div>
+
+<p>The selectors presented in figures 37-a and 37-b will respectively generate the RDF statements in figures 38-a and 38-b.</p>
+
+<div class="center">
+<img src="images/ex38a.png" alt="Figure 38-a: selecting resources subject of an rdf:type property whose value is foaf:Image" /><br />
+<p class="figure">Figure 38-a: Selecting resources subject of an rdf:type property whose value is foaf:Image (<a href="images/ex38a.svg">SVG version</a>)</p>
+<img src="images/ex38b.png" alt="Figure 38-b: selecting resources subject of an rdf:type property and subject of a property whose value is foaf:Image" /><br />
+<p class="figure">Figure 38-b: Selecting resources subject of an rdf:type property and subject of a property whose value is foaf:Image (<a href="images/ex38b.svg">SVG version</a>)</p>
+</div>
+
+<h4>Selector Weight</h4>
+
+<p>Each selector's first line (the gray one) contains information about the selector's weight. This value represents the priority of the selector in case of conflict between selectors and cannot be changed. It is computed by IsaViz's GSS engine to choose the most specific selector when several selectors apply to a resource (or property or literal). A higher weight corresponds to a higher priority.</p>
+
+<h3><a name="fevis"></a>8.3 Visibility and Layout</h3>
+
+<p>As shown in figure 39, styling, visibility, layout and sorting instructions are associated with selectors using (only) the gray lines of each selector. Visibility can be set to <em>Visible</em>, <em>Hidden</em> or <em>Not Displayed</em>, which correspond respectively to <em>gss:visibility=gss:Visible</em>, <em>gss:visibility=gss:Hidden</em> and <em>gss:display=gss:None</em>. Layout is specified in a similar way and can be set to <em>Node and Arc</em> or <em>Table</em>. As we have seen in <a href="#layout">Section 7. Layout Instructions</a>, layout instructions apply to the entities selected by the selector, not the objects associated with those entities. Furthermore, table layout instructions might be ignored if the entities to which they apply do not meet all requirements for being displayed in a table.</p>
+
+<div class="center">
+<img src="images/ex39.png" alt="Figure 39: associating a layout instruction with a selector" /><br />
+<p class="figure">Figure 39: Associating a layout instruction with a selector</p>
+</div>
+
+<h3><a name="festy"></a>8.4 Styles</h3>
+
+<p>As we have seen in <a href="#styles">Section 5. Styling Instructions</a>, styling properties are not directly associated with selectors. Instead, one or more styling properties can be attached to a style node, which is itself pointed at by one or more selectors using the <strong>gss:style</strong> property, thus enabling the reuse of already defined styles. This is reflected by <em>GSS Editor</em> as follows: styles are defined in a separate table in the lower part of the main window (figure 40). Each style is defined on one row and has a unique ID. These IDs are used to refer to styles from the <em>Styles</em> column of the resource, literal and property selector tables. A selector can refer to several styles, separated by commas (as shown in the last but one row of figure 39). <em>GSS Editor</em> will accept all values accepted by the GSS vocabulary (see <a href="#styles">Section 5. Styling Instructions</a>), that is to say all values allowed by the <a href="http://www.w3.org/TR/REC-CSS2/">CSS 2 Specification</a>, plus some additional values from the <a href="http://www.w3.org/TR/SVG/">SVG 1.0 Specification</a> and new ones for the <em>Shape</em> and <em>Icon</em> columns.</p>
+
+<div class="center">
+<img src="images/ex40.png" alt="Figure 40: style panel" /><br />
+<p class="figure">Figure 40: Styles Panel</p>
+</div>
+
+<p>For instance, the resources selected by the last selector of figure 39 will be assigned:</p>
+<ul>
+  <li>a shape defined by a custom <strong>gss:polygon</strong> (as specified by <em>DocumentStyle</em>),</li>
+  <li>a text alignment with value <strong>gss:Below</strong>, placing the node's label below the shape (as specified by <em>DocumentStyle</em>),</li>
+  <li>a fill color whose RGB coordinates are &lt;45,191,103&gt; (as specified by <em>WebPageStyle</em>),</li>
+  <li>a stroke color whose RGB coordinates are &lt;25,137,67&gt; (as specified by <em>WebPageStyle</em>).</li>
+</ul>
+
+<p>Standard shapes such as rectangle, ellipse or triangle can be chosen from the drop-down list associated with the <em>shape</em> column. As we have seen before, the ZVTM also offers a graphical front-end for specifying <strong>gss:shape</strong> values by direct manipulation (figure 41). However, <strong>gss:polygon</strong> values can only be entered by hand for now, following the grammar defined in <a href="#ndsh">Section 5. Styling Instructions - Node Shape</a>, as there is no front-end for their definition.</p>
+
+<div class="center">
+<img src="images/ex22.png" alt="Figure 41: ZVTM Glyph Factory Java/Swing Widget" /><br />
+<p class="figure">Figure 41: ZVTM Glyph Factory</p>
+</div>
+
+<p>Icons can be specified statically by choosing a local file or entering a URI pointing to a bitmap image, but also dynamically by choosing <em>Fetch</em>, which corresponds to instruction <strong>gss:Fetch</strong> (see <a href="#bmpic">Section 5. Styling Instructions - Bitmap Icons</a>) for more details.</p>
+
+<h3><a name="fesort"></a>8.5 Sorting</h3>
+
+<p>Sorting criteria can be associated with resource selectors and apply to the property/value pairs associated with the selected resources and laid out in a table. GSS features four predefined criteria: <em>by name</em>, <em>by namespace</em>, <em>by name (reversed)</em> and <em>by namespace (reversed)</em>, all available from the drop-down list in the last column of the resource selector table (figure 39).</p>
+
+<p>It is also possible to define custom criteria by specifying property enumerations. These are defined in the <em>Custom Enumerations</em> subpanel of the resource selector table (figure 42). As for styles, each enumeration has a unique ID, which is used to refer to it from the resource selector table's last column. To assign such an enumeration to a selector, choose <em>Enumeration...</em> and then click on the appropriate row in the <em>Custom Enumerations</em> subpanel.</p>
+
+<div class="center">
+<img src="images/ex42.png" alt="Figure 42: Specifying Sorting Criteria using Property Enumerations" /><br />
+<p class="figure">Figure 42: Specifying Sorting Criteria using Property Enumerations</p>
+</div>
+
+<p>The enumeration consists of a comma-separated list of property names, entered either as full URIs or using namespace prefix bindings (those bindings must be declared in IsaViz's <em>Definition</em> window, in the <em>Namespaces</em> tab).</p>
+
+<h2><a name="bib"></a>Bibliography</h2>
+
+<a name="ref1" />
+<p>[1] Jean-Yves Vion-Dury and Francois Pacull, <b>A structured Interactive Workspace for a Visual Configuration Language</b>, <i>Proceedings of Visual Languages &#8217;97</i>, pp132-139, 1997, Capri, Italy</p>
+
+<a name="ref2" />
+<p>[2]  Jean-Yves Vion-Dury, <b>Un g&eacute;n&eacute;rateur de composants pour le traitement des langages visuels et textuels</b>, <i>Universit&eacute; Joseph Fourier - Grenoble 1</i> (PhD thesis), 1999, Domaine Universitaire, Saint Martin d'H&egrave;res, France</p>
+
+<a name="ref3" />
+<p>[3] Emmanuel Pietriga, <b>Environnements et langages de programmation visuels pour le traitement de documents structurés</b>, <i>Institut National Polytechnique de Grenoble</i> (PhD thesis), Novembre 2002, Grenoble, France</p>
+
+<a name="ref4" />
+<p>[4] Bert Bos, Håkon Wium Lie, Chris Lilley and Ian Jacobs, <b>Cascading Style Sheets, level 2 - CSS2 Specification</b>, W3C Recommendation, 12 May 1998, <a href="http://www.w3.org/TR/REC-CSS2/">http://www.w3.org/TR/REC-CSS2/</a></p>
+
+<a name="ref5" />
+<p>[5] Jon Ferraiolo (Editor), <b>Scalable Vector Graphics (SVG) 1.0 Specification</b>, W3C Recommendation, 04 September 2001, <a href="http://www.w3.org/TR/SVG/">http://www.w3.org/TR/SVG/</a></p>
+
+<a name="ref6" />
+<p>[6] Emmanuel Pietriga, <b>ZVTM (Zoomable Visual Transformation Machine)</b>, 2003, <a href="http://zvtm.sourceforge.net">http://zvtm.sourceforge.net</a></p>
+
+<hr/>
+<table>
+	<tr>
+	  <td><p><a href="http://validator.w3.org/check/referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0!" height="31" width="88" border="0"/></a></p></td>
+	  <td><p><i><small><a href="http://www.lri.fr/~pietriga/">Emmanuel Pietriga</a><br/>
+<!-- hhmts start -->
+Last modified: Wed Oct 13 10:02:42 Paris, Madrid (heure d'été) 2004
+<!-- hhmts end -->
+</small></i></p></td>
+	</tr>
+</table>
+</body>
+</html>

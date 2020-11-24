@@ -1,0 +1,448 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:gss="http://www.w3.org/2001/11/IsaViz/graphstylesheets#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xml:base="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss">
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"
+       gss:fill="rgb(94,228,148)"
+       gss:stroke="rgb(17,95,48)"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/nick"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Resource>
+    <gss:display rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#None"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+  </gss:Resource>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/mbox"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <rdf:Description rdf:ID="DocumentStyle">
+    <gss:shape>{20.0,-30.0;20.0,15.0;5.0,30.0;-30.0,30.0;-30.0,-30.0}</gss:shape>
+    <gss:text-align rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Below"/>
+  </rdf:Description>
+  <gss:Property>
+    <gss:layout rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/geekcode"/>
+  </gss:Property>
+  <gss:Property>
+    <gss:layout rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/iChatID"/>
+  </gss:Property>
+  <gss:Property>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#WebPageStyle"
+       gss:fill="rgb(45,191,103)"
+       gss:stroke="rgb(25,137,67)"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/homepage"/>
+  </gss:Property>
+  <gss:Resource>
+    <gss:display rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#None"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
+  </gss:Resource>
+  <gss:Property>
+    <gss:layout rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/mbox"/>
+  </gss:Property>
+  <rdf:Description rdf:ID="MiscInfoStyle"
+     gss:fill="rgb(176,242,202)"
+     gss:stroke="rgb(17,95,48)"/>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#MiscInfoStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/givenname"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#WebPageStyle"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#DocumentStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/schoolPage"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Property>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#WebPageStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/weblog"/>
+  </gss:Property>
+  <gss:Property>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#DashPropStyle"
+       gss:stroke-width="2.0"
+       gss:stroke-dasharray="10.0,20.0"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/knows"/>
+  </gss:Property>
+  <rdf:Description rdf:ID="DefaultFoafStyle"
+     gss:stroke="rgb(31,171,84)"/>
+  <rdf:Description rdf:ID="NameSorting">
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/title"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/surname"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/firstName"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/family_name"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/givenname"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/name"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/phone"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/mbox"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/mbox_sha1sum"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/nick"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/aimChatID"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/iChatID"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/jabberID"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/msnChatID"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/homepage"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/page"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/workplaceHomepage"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/workInfoHomepage"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/schoolPage"/>
+    <rdf:li rdf:resource="http://xmlns.com/foaf/0.1/weblog"/>
+  </rdf:Description>
+  <gss:Literal>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/nick"/>
+    </gss:objectOfStatement>
+  </gss:Literal>
+  <rdf:Description rdf:ID="DefaultLitStyle"
+     gss:fill="rgb(255,255,255)"
+     gss:stroke="rgb(26,124,138)"/>
+  <gss:Literal>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#MiscInfoStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/title"/>
+    </gss:objectOfStatement>
+  </gss:Literal>
+  <gss:Resource>
+    <gss:style>
+      <rdf:Description rdf:ID="ImageStyle">
+        <gss:icon rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Fetch"/>
+        <gss:text-align rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Below"/>
+      </rdf:Description>
+    </gss:style>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/depiction"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Literal>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/jabberID"/>
+    </gss:objectOfStatement>
+  </gss:Literal>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/aimChatID"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Resource>
+    <gss:sortPropertiesBy rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#NameSorting"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#DocumentStyle"/>
+    <gss:subjectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <gss:object
+         gss:value="http://xmlns.com/foaf/0.1/Document"/>
+    </gss:subjectOfStatement>
+  </gss:Resource>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#MiscInfoStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/phone"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Resource>
+    <gss:style>
+      <rdf:Description rdf:ID="ProjectStyle">
+        <gss:icon rdf:resource="http://www.w3.org/2001/11/IsaViz/gss/foaf/proj.png"/>
+        <gss:text-align rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Below"/>
+      </rdf:Description>
+    </gss:style>
+    <gss:subjectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <gss:object
+         gss:value="http://xmlns.com/foaf/0.1/Project"/>
+    </gss:subjectOfStatement>
+  </gss:Resource>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/msnChatID"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#WebPageStyle"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#DocumentStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/weblog"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/iChatID"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Property>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#MiscInfoStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/family_name"/>
+  </gss:Property>
+  <gss:Literal>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/mbox"/>
+    </gss:objectOfStatement>
+  </gss:Literal>
+  <gss:Property>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#WebPageStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/workInfoHomepage"/>
+  </gss:Property>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ImageStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/img"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Literal>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/iChatID"/>
+    </gss:objectOfStatement>
+  </gss:Literal>
+  <gss:Property>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#DefaultLitStyle"/>
+  </gss:Property>
+  <gss:Property>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#WebPageStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/workplaceHomepage"/>
+  </gss:Property>
+  <gss:Literal>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/msnChatID"/>
+    </gss:objectOfStatement>
+  </gss:Literal>
+  <gss:Property>
+    <gss:layout rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#MiscInfoStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/surname"/>
+  </gss:Property>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#WebPageStyle"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#DocumentStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/homepage"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Literal>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#MiscInfoStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/phone"/>
+    </gss:objectOfStatement>
+  </gss:Literal>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#MiscInfoStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/title"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Property>
+    <gss:layout rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/aimChatID"/>
+  </gss:Property>
+  <gss:Property>
+    <gss:layout rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/myersBriggs"/>
+  </gss:Property>
+  <gss:Literal>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#MiscInfoStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/surname"/>
+    </gss:objectOfStatement>
+  </gss:Literal>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#WebPageStyle"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#DocumentStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/workplaceHomepage"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Property>
+    <gss:layout rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#MiscInfoStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/title"/>
+  </gss:Property>
+  <gss:Property>
+    <gss:layout rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#MiscInfoStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/givenname"/>
+  </gss:Property>
+  <gss:Literal>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#MiscInfoStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/givenname"/>
+    </gss:objectOfStatement>
+  </gss:Literal>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#DocumentStyle"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#WebPageStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/page"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Property>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#WebPageStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/schoolPage"/>
+  </gss:Property>
+  <rdf:Description rdf:ID="PersonStyle">
+    <gss:icon rdf:resource="http://www.w3.org/2001/11/IsaViz/gss/foaf/person.png"/>
+  </rdf:Description>
+  <gss:Literal>
+    <gss:layout rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#DefaultLitStyle"/>
+  </gss:Literal>
+  <gss:Resource>
+    <gss:display rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#None"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/Project"/>
+  </gss:Resource>
+  <gss:Resource>
+    <gss:sortPropertiesBy rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#NameSorting"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#PersonStyle"/>
+    <gss:subjectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <gss:object
+         gss:value="http://xmlns.com/foaf/0.1/Person"/>
+    </gss:subjectOfStatement>
+  </gss:Resource>
+  <gss:Literal>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/mbox_sha1sum"/>
+    </gss:objectOfStatement>
+  </gss:Literal>
+  <gss:Property>
+    <gss:layout rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#MiscInfoStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/firstName"/>
+  </gss:Property>
+  <gss:Literal>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#MiscInfoStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/firstName"/>
+    </gss:objectOfStatement>
+  </gss:Literal>
+  <gss:Property>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#WebPageStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/page"/>
+  </gss:Property>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#WebPageStyle"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#DocumentStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/workInfoHomepage"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Literal>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/aimChatID"/>
+    </gss:objectOfStatement>
+  </gss:Literal>
+  <gss:Property>
+    <gss:layout rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#MiscInfoStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/name"/>
+  </gss:Property>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ImageStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/logo"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Literal>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#MiscInfoStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/family_name"/>
+    </gss:objectOfStatement>
+  </gss:Literal>
+  <gss:Property>
+    <gss:layout rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/jabberID"/>
+  </gss:Property>
+  <gss:Property>
+    <gss:layout rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/mbox_sha1sum"/>
+  </gss:Property>
+  <gss:Property>
+    <gss:layout rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/msnChatID"/>
+  </gss:Property>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ImageStyle"/>
+    <gss:subjectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <gss:object
+         gss:value="http://xmlns.com/foaf/0.1/Image"/>
+    </gss:subjectOfStatement>
+  </gss:Resource>
+  <gss:Resource>
+    <gss:sortPropertiesBy rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#NameSorting"/>
+    <gss:style>
+      <rdf:Description rdf:ID="OrgStyle">
+        <gss:icon rdf:resource="http://www.w3.org/2001/11/IsaViz/gss/foaf/org.png"/>
+      </rdf:Description>
+    </gss:style>
+    <gss:subjectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <gss:object
+         gss:value="http://xmlns.com/foaf/0.1/Organization"/>
+    </gss:subjectOfStatement>
+  </gss:Resource>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/jabberID"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ImageStyle"/>
+    <gss:subjectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/depicts"/>
+    </gss:subjectOfStatement>
+  </gss:Resource>
+  <gss:Property>
+    <gss:layout rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#MiscInfoStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/phone"/>
+  </gss:Property>
+  <gss:Resource>
+    <gss:display rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#None"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
+  </gss:Resource>
+  <gss:Literal>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#MiscInfoStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/name"/>
+    </gss:objectOfStatement>
+  </gss:Literal>
+  <gss:Resource>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:objectOfStatement rdf:parseType="Resource">
+      <gss:predicate rdf:resource="http://xmlns.com/foaf/0.1/mbox_sha1sum"/>
+    </gss:objectOfStatement>
+  </gss:Resource>
+  <gss:Property>
+    <gss:layout rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table"/>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#ChatStyle"/>
+    <gss:uriEquals rdf:resource="http://xmlns.com/foaf/0.1/nick"/>
+  </gss:Property>
+  <gss:Property>
+    <gss:style rdf:resource="file:/C:/Circus/WWW/2001/10/IsaViz/gss/foaf/foaf_stylesheet.gss#DefaultFoafStyle"/>
+    <gss:uriStartsWith rdf:resource="http://xmlns.com/foaf/0.1"/>
+  </gss:Property>
+</rdf:RDF>

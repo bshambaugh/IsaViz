@@ -1,0 +1,580 @@
+@prefix s:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc:   <http://purl.org/dc/elements/1.1/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix gss:  <http://www.w3.org/2001/11/IsaViz/graphstylesheets#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix con:  <http://www.w3.org/2000/10/swap/pim/contact#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.w3.org/2001/11/IsaViz/graphstylesheets> a owl:Ontology ;
+	s:label "IsaViz Graph Style Sheet Ontology"^^xsd:string ;
+	dc:description "IsaViz Graph Style Sheet Ontology"^^xsd:string ;
+	dc:publisher "World Wide Web Consortium (W3C)"^^xsd:string ;
+	dc:language "en" ;
+	dc:creator [ a con:Person ; con:mailbox <mailto:ryanlee@w3.org> ; con:fullName "Ryan Lee"^^xsd:string ] ;
+	dc:relation <http://www.w3.org/2001/11/IsaViz/graphstylesheets/gssmanual.html> ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:seeAlso <http://www.w3.org/2001/11/IsaViz/> .
+
+# Basis
+gss:Selector a owl:Class ;
+	s:label "Selector"^^xsd:string ;
+	s:comment """Selects part of a model for styling."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	owl:oneOf (gss:Resource gss:Property gss:Literal) .
+
+gss:Resource a owl:Class ;
+	s:subClassOf gss:Selector ;
+	s:label "Resource"^^xsd:string ;
+	s:comment """A generic RDF resource, used as a selector."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:style ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:uriEquals ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:uriStartsWith ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:subjectOfStatement ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:objectOfStatement ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:layout ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:visibility ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:display ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:sortPropertiesBy ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ] .
+
+gss:Property a owl:Class ;
+	s:subClassOf gss:Selector ;
+	s:label "Property"^^xsd:string ;
+	s:comment """A generic RDF property, used as a selector."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:style ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:uriEquals ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:uriStartsWith ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:predicateOfStatement ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:layout ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:visibility ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:display ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:sortPropertiesBy ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ] .
+
+gss:Literal a owl:Class ;
+	s:subClassOf gss:Selector ;
+	s:label "Literal"^^xsd:string ;
+	s:comment """A generic, untyped literal, used as a selector."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:style ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:value ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:datatype ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:objectOfStatement ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:layout ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:visibility ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:display ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:sortPropertiesBy ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ] .
+
+gss:uriEquals a owl:ObjectProperty ;
+	s:label "uri Equals"^^xsd:string ;
+	s:comment """Describes which URI a selected resource should be equal to."""^^xsd:string ;
+	s:range s:Resource ;
+	s:domain gss:Selector ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:uriStartsWith a owl:ObjectProperty ;
+	s:label "uri Starts With"^^xsd:string ;
+	s:comment """Describes what URI fragment a selected resource should begin with."""^^xsd:string ;
+	s:range s:Resource ;
+	s:domain gss:Selector ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:subjectOfStatement a owl:ObjectProperty ;
+	s:label "subject Of Statement"^^xsd:string ;
+	s:comment """The subject of this property will be selected because it is the subject of a statement."""^^xsd:string ;
+	s:range gss:Statement ;
+	s:domain gss:Resource ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:objectOfStatement a owl:ObjectProperty ;
+	s:label "object Of Statement"^^xsd:string ;
+	s:comment """The subject of this property will be selected because it is the object of a statement."""^^xsd:string ;
+	s:range gss:Statement ;
+	s:domain gss:Selector ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:predicateOfStatement a owl:ObjectProperty ;
+	s:label "object Of Statement"^^xsd:string ;
+	s:comment """The subject of this property will be selected because it is the property of a statement."""^^xsd:string ;
+	s:range gss:Statement ;
+	s:domain gss:Property ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:value a owl:DatatypeProperty ;
+	s:label "value"^^xsd:string ;
+	s:comment """Specifies an equality constraint on the value of the literal(s) to select."""^^xsd:string ;
+	s:range s:Literal ;
+	s:domain gss:Selector ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:datatype a owl:ObjectProperty ;
+	s:label "value"^^xsd:string ;
+	s:comment """Specifies a constraint on the datatype of the literal(s) to select."""^^xsd:string ;
+	s:range s:Resource ;
+	s:domain gss:Selector ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:PlainLiterals a owl:Class ;
+	s:subClassOf s:Resource ;
+	s:label "Plain Literals"^^xsd:string ;
+	s:comment """Special class denoting untyped literals, can be usedas the object of gss:datatype."""^^xsd:string ;
+	s:seeAlso gss:datatype ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:Statement a owl:Class ;
+	s:label "Statement"^^xsd:string ;
+	s:comment """A subject-predicate-object triple."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:subject ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:predicate ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:object ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] .
+
+gss:subject a owl:ObjectProperty ;
+	s:label "subject"^^xsd:string ;
+	s:comment """A restriction on the subject of a statement."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:range s:Resource ;
+	s:domain gss:Statement .
+
+gss:predicate a owl:ObjectProperty ;
+	s:label "predicate"^^xsd:string ;
+	s:comment """A restriction on the predicate of a statement."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:range s:Resource ;
+	s:domain gss:Statement .
+
+gss:object a owl:ObjectProperty ;
+	s:label "object"^^xsd:string ;
+	s:comment """A restriction on the object of a statement (range is either an object or a literal)."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:domain gss:Statement .
+
+gss:class a owl:ObjectProperty ;
+	s:label "class"^^xsd:string ;
+	s:comment """The restricted object has this rdf:type."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:range s:Resource ;
+	s:domain s:Resource .
+
+# Styling basis
+gss:style a owl:ObjectProperty ;
+	s:label "style"^^xsd:string ;
+	s:comment """Relating a resource to its style."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:domain gss:Selector ;
+	s:range gss:StyleSet .
+
+gss:StyleSet a owl:Class ;
+	s:label "Style Set"^^xsd:string ;
+	s:comment """A set of styling properties."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:stroke ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:stroke-width ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:stroke-dasharray ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:fill ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:font-family ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:font-size ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:font-weight ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:font-style ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:text-align ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:shape ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+	s:subClassOf [ a owl:Restriction ;
+		owl:onProperty gss:icon ;
+		owl:minCardinality "0"^^xsd:nonNegativeInteger ;
+		owl:maxCardinality "1"^^xsd:nonNegativeInteger ] .
+
+# Border / fill properties
+gss:stroke a owl:DatatypeProperty ;
+	s:label "stroke"^^xsd:string ;
+	s:comment """Color of the polygon's border."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:seeAlso <http://www.w3.org/TR/REC-CSS2/> ;
+	s:domain gss:StyleSet ;
+	s:range xsd:string .
+
+gss:stroke-width a owl:DatatypeProperty ;
+	s:label "stroke width"^^xsd:string ;
+	s:comment """Width of the polygon's border."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:domain gss:StyleSet ;
+	s:range xsd:double .
+
+gss:stroke-dasharray a owl:DatatypeProperty ;
+	s:label "stroke width"^^xsd:string ;
+	s:comment """Width of the polygon's border."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:domain gss:StyleSet ;
+	s:range xsd:string .
+
+gss:fill a owl:DatatypeProperty ;
+	s:label "fill"^^xsd:string ;
+	s:comment """Color for filling in the polygon."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:seeAlso <http://www.w3.org/TR/REC-CSS2/> ;
+	s:domain gss:StyleSet ;
+	s:range xsd:string .
+
+# Font properties
+gss:font-family a owl:DatatypeProperty ;
+	s:label "font family"^^xsd:string ;
+	s:comment """The type of font to use."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:seeAlso <http://www.w3.org/TR/REC-CSS2/> ;
+	s:domain gss:StyleSet ;
+	s:range xsd:string .
+
+gss:font-size a owl:DatatypeProperty ;
+	s:label "font size"^^xsd:string ;
+	s:comment """The size of font to use."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:seeAlso <http://www.w3.org/TR/REC-CSS2/> ;
+	s:domain gss:StyleSet ;
+	s:range xsd:string .
+
+gss:font-weight a owl:DatatypeProperty ;
+	s:label "font weight"^^xsd:string ;
+	s:comment """The weight of font to use."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:seeAlso <http://www.w3.org/TR/REC-CSS2/> ;
+	s:domain gss:StyleSet ;
+	s:range xsd:string .
+
+gss:font-style a owl:DatatypeProperty ;
+	s:label "font style"^^xsd:string ;
+	s:comment """The style (italic or not) of font to use."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:seeAlso <http://www.w3.org/TR/REC-CSS2/> ;
+	s:domain gss:StyleSet ;
+	s:range xsd:string .
+
+# Text align
+gss:text-align a owl:ObjectProperty ;
+	s:label "text align"^^xsd:string ;
+	s:comment """Relating a resource to its label placement."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:range gss:Alignment ;
+	s:domain gss:StyleSet .
+
+gss:Alignment a owl:Class ;
+	s:label "Alignment"^^xsd:string ;
+	s:comment """Various alignments of text."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	owl:oneOf (gss:Center gss:Above gss:Below gss:Left gss:Right) .
+
+gss:Center a gss:Alignment ;
+	s:label "Center"^^xsd:string ;
+	s:comment """Position text in the center of its representation."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:Above a gss:Alignment ;
+	s:label "Above"^^xsd:string ;
+	s:comment """Position text above its representation."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:Below a gss:Alignment ;
+	s:label "Below"^^xsd:string ;
+	s:comment """Position text below its representation."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:Left a gss:Alignment ;
+	s:label "Left"^^xsd:string ;
+	s:comment """Position text to the left of its representation without overlapping the border."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:Right a gss:Alignment ;
+	s:label "Right"^^xsd:string ;
+	s:comment """Position text to the right of its representation without overlapping the border."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+# Shaping / icons
+gss:shape a owl:ObjectProperty ;
+	s:label "shape"^^xsd:string ;
+	s:comment """Shape of a resource's representation."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:domain gss:StyleSet ;
+	s:range gss:Polygon .
+
+gss:Polygon a owl:Class ;
+	s:label "Polygon"^^xsd:string ;
+	s:comment """Shape given to represent a resource."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	owl:unionOf (gss:Ellipse gss:Rectangle gss:RoundRectangle gss:Circle gss:Diamond gss:Octagon gss:TriangleNorth gss:TriangleSouth gss:TriangleEast gss:TriangleWest xsd:string) .
+
+gss:Ellipse a gss:Polygon ;
+	s:label "Ellipse"^^xsd:string ;
+	s:comment "Ellipse shape"^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:Rectangle a gss:Polygon ;
+	s:label "Rectangle"^^xsd:string ;
+	s:comment "Rectangle shape"^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:RoundRectangle a gss:Polygon ;
+	s:label "Round Rectangle"^^xsd:string ;
+	s:comment "Round Rectangle shape"^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:Circle a gss:Polygon ;
+	s:label "Circle"^^xsd:string ;
+	s:comment "Circle shape"^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:Diamond a gss:Polygon ;
+	s:label "Diamond"^^xsd:string ;
+	s:comment "Diamond shape"^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:Octagon a gss:Polygon ;
+	s:label "Octagon"^^xsd:string ;
+	s:comment "Octagon shape"^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:TriangleNorth a gss:Polygon ;
+	s:label "Triangle North"^^xsd:string ;
+	s:comment "Equilateral triangle pointing 'north' shape"^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:TriangleSouth a gss:Polygon ;
+	s:label "Triangle South"^^xsd:string ;
+	s:comment "Equilateral triangle pointing 'south' shape"^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:TriangleEast a gss:Polygon ;
+	s:label "Triangle East"^^xsd:string ;
+	s:comment "Equilateral triangle pointing 'east' shape"^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:TriangleWest a gss:Polygon ;
+	s:label "Triangle West"^^xsd:string ;
+	s:comment "Equilateral triangle pointing 'west' shape"^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+# Icon stuff
+gss:icon a owl:ObjectProperty ;
+	s:label "icon"^^xsd:string ;
+	s:comment """Replace a resource with a bitmap icon if possible."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:domain gss:StyleSet ;
+	s:range s:Resource .
+
+gss:Fetch a owl:Thing ;
+	s:label "Fetch"^^xsd:string ;
+	s:comment """Specialized resource for use with gss:icon to fetch the image at the given resource's URI."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+# Display / visibility vocabulary
+gss:visibility a owl:ObjectProperty ;
+	s:label "visibility"^^xsd:string ;
+	s:comment """A resource's visibility; it is still part of the layout calculation, but may not actually be displayed."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:domain gss:Selector ;
+	s:range gss:VisibilityStyle .
+
+gss:VisibilityStyle a owl:Class ;
+	s:label "Visibility Style"^^xsd:string ;
+	s:comment """Hidden or visible visibility characteristic."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	owl:oneOf (gss:Visible gss:Hidden) .
+
+gss:Visible a gss:VisibilityStyle ;
+	s:label "Visible"^^xsd:string ;
+	s:comment """Visible visibility"""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:Hidden a gss:VisibilityStyle ;
+	s:label "Hidden"^^xsd:string ;
+	s:comment """Hidden visibility"""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:display a owl:ObjectProperty ;
+	s:label "display"^^xsd:string ;
+	s:comment """Relates a resource to its display."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:range gss:DisplayStyle ;
+	s:domain gss:Selector .
+
+gss:DisplayStyle a owl:Class ;
+	s:label "Display Style"^^xsd:string ;
+	s:comment """Controls displaying of a resource."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	owl:oneOf (gss:None) .
+
+gss:None a gss:DisplayStyle ;
+	s:label "None"^^xsd:string ;
+	s:comment """Displays nothing."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+# Layout vocabulary
+gss:layout a owl:ObjectProperty ;
+	s:label "layout"^^xsd:string ;
+	s:comment """Specifies which layout statements with this subject will have"""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	s:domain gss:Selector ;
+	s:range gss:LayoutForm .
+
+gss:LayoutForm a owl:Class ;
+	s:label "Layout Form"^^xsd:string ;
+	s:comment """A structure for laying out a graph."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> ;
+	owl:oneOf (gss:NodeAndArc gss:Table) .
+
+gss:Table a gss:LayoutForm ;
+	s:label "Table"^^xsd:string ;
+	s:comment """Tabular representation of an RDF model."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:NodeAndArc a gss:LayoutForm ;
+	s:label "Node And Arc"^^xsd:string ;
+	s:comment """Nodes and arcs representation of an RDF model, the default representation."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+# Sorting vocabulary, related to Table layout vocabulary
+gss:sortPropertiesBy a owl:ObjectProperty ;
+	s:label "sort Properties By"^^xsd:string ;
+	s:comment """Describes how to sort a table based on property names."""^^xsd:string ;
+	s:domain gss:Resource ;
+	s:range gss:SortOption ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:SortOption a owl:Class ;
+	s:label "Sort Property"^^xsd:string ;
+	s:comment """Ways to sort a table."""^^xsd:string ;
+	owl:oneOf (rdf:Seq gss:Name gss:NameReversed gss:Namespace gss:NamespaceReversed) ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+rdf:Seq a gss:SortOption ;
+	s:comment """Sorting by the order of items in the sequence."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/1999/02/22-rdf-syntax-ns> .
+
+gss:Name a gss:SortOption ;
+	s:label "Name"^^xsd:string ;
+	s:comment """Sorting by name in alphabetical order."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:NameReversed a gss:SortOption ;
+	s:label "Name Reversed"^^xsd:string ;
+	s:comment """Sorting by name in reverse alphabetical order."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:Namespace a gss:SortOption ;
+	s:label "Namespace"^^xsd:string ;
+	s:comment """Sorting by namespace in alphabetical order."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .
+
+gss:NamespaceReversed a gss:SortOption ;
+	s:label "Namespace Reversed"^^xsd:string ;
+	s:comment """Sorting order with namespaces in reverse alphabetical order."""^^xsd:string ;
+	s:isDefinedBy <http://www.w3.org/2001/11/IsaViz/graphstylesheets> .

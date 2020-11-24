@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg height="600" viewBox="0 0 867 570" width="800"
+    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g style="font-family:Arial Unicode MS;font-style:normal;font-weight:normal;font-size:10">
+        <ellipse cx="94" cy="192" rx="36" ry="24" style="fill:rgb(115,191,115);stroke:rgb(66,105,66)"/>
+        <ellipse cx="94" cy="400" rx="36" ry="24" style="fill:rgb(115,191,115);stroke:rgb(66,105,66)"/>
+        <ellipse cx="382" cy="139" rx="36" ry="24" style="fill:rgb(115,191,115);stroke:rgb(66,105,66)"/>
+        <text style="stroke:rgb(66,105,66);fill:rgb(66,105,66)"
+            text-anchor="start" x="359" y="142">#OrgStyle</text>
+        <ellipse cx="383" cy="208" rx="36" ry="24" style="fill:rgb(115,191,115);stroke:rgb(66,105,66)"/>
+        <ellipse cx="386" cy="286" rx="38" ry="24" style="fill:rgb(115,191,115);stroke:rgb(66,105,66)"/>
+        <text style="stroke:rgb(66,105,66);fill:rgb(66,105,66)"
+            text-anchor="start" x="355" y="289">gss:Resource</text>
+        <ellipse cx="390" cy="376" rx="36" ry="24" style="fill:rgb(115,191,115);stroke:rgb(66,105,66)"/>
+        <ellipse cx="391" cy="458" rx="36" ry="24" style="fill:rgb(115,191,115);stroke:rgb(66,105,66)"/>
+        <text style="stroke:rgb(66,105,66);fill:rgb(66,105,66)"
+            text-anchor="start" x="362" y="461">#ImageStyle</text>
+        <ellipse cx="678" cy="140" rx="140" ry="24" style="fill:rgb(115,191,115);stroke:rgb(66,105,66)"/>
+        <text style="stroke:rgb(66,105,66);fill:rgb(66,105,66)"
+            text-anchor="start" x="561" y="143">http://www.w3.org/2001/11/IsaViz/gss/foaf/org.png</text>
+        <ellipse cx="678" cy="212" rx="36" ry="24" style="fill:rgb(115,191,115);stroke:rgb(66,105,66)"/>
+        <ellipse cx="676" cy="286" rx="36" ry="24" style="fill:rgb(115,191,115);stroke:rgb(66,105,66)"/>
+        <text style="stroke:rgb(66,105,66);fill:rgb(66,105,66)"
+            text-anchor="start" x="659" y="289">rdf:type</text>
+        <ellipse cx="679" cy="375" rx="36" ry="24" style="fill:rgb(115,191,115);stroke:rgb(66,105,66)"/>
+        <ellipse cx="679" cy="462" rx="36" ry="24" style="fill:rgb(115,191,115);stroke:rgb(66,105,66)"/>
+        <text style="stroke:rgb(66,105,66);fill:rgb(66,105,66)"
+            text-anchor="start" x="657" y="465">gss:Fetch</text>
+        <path d="M123 386C178 353 262 288 349 288" style="fill:none;stroke:rgb(90,89,206)"/>
+        <polygon points="354,288 346,292 346,284" style="fill:rgb(90,89,206);stroke:none"/>
+        <path d="M130 400C163 400 299 386 355 380" style="fill:none;stroke:rgb(90,89,206)"/>
+        <polygon points="360,379 352,384 352,376" style="fill:rgb(90,89,206);stroke:none"/>
+        <path d="M125 413C140 430 320 459 356 459" style="fill:none;stroke:rgb(90,89,206)"/>
+        <polygon points="361,459 353,463 353,455" style="fill:rgb(90,89,206);stroke:none"/>
+        <text style="stroke:rgb(90,89,206);fill:rgb(90,89,206)"
+            text-anchor="start" x="249" y="442">gss:style</text>
+        <text style="stroke:rgb(90,89,206);fill:rgb(90,89,206)"
+            text-anchor="start" x="199" y="380">gss:subjectOfStatement</text>
+        <text style="stroke:rgb(90,89,206);fill:rgb(90,89,206)"
+            text-anchor="start" x="194" y="318">rdf:type</text>
+        <text style="stroke:rgb(90,89,206);fill:rgb(90,89,206)"
+            text-anchor="start" x="231" y="248">rdf:type</text>
+        <path d="M122 208C141 224 272 277 350 278" style="fill:none;stroke:rgb(90,89,206)"/>
+        <polygon points="355,278 347,282 347,274" style="fill:rgb(90,89,206);stroke:none"/>
+        <path d="M130 192C171 196 302 195 349 202" style="fill:none;stroke:rgb(90,89,206)"/>
+        <polygon points="354,203 345,206 347,198" style="fill:rgb(90,89,206);stroke:none"/>
+        <text style="stroke:rgb(90,89,206);fill:rgb(90,89,206)"
+            text-anchor="start" x="195" y="187">gss:subjectOfStatement</text>
+        <path d="M125 181C141 172 291 140 346 141" style="fill:none;stroke:rgb(90,89,206)"/>
+        <text style="stroke:rgb(90,89,206);fill:rgb(90,89,206)"
+            text-anchor="start" x="216" y="146">gss:style</text>
+        <polygon points="351,141 343,145 343,137" style="fill:rgb(90,89,206);stroke:none"/>
+        <path d="M417 139C450 139 492 140 538 140" style="fill:none;stroke:rgb(90,89,206)"/>
+        <polygon points="543,140 535,144 535,136" style="fill:rgb(90,89,206);stroke:none"/>
+        <text style="stroke:rgb(90,89,206);fill:rgb(90,89,206)"
+            text-anchor="start" x="457" y="132">gss:icon</text>
+        <path d="M426 461C455 461 630 461 644 462" style="fill:none;stroke:rgb(90,89,206)"/>
+        <polygon points="649,462 641,466 641,458" style="fill:rgb(90,89,206);stroke:none"/>
+        <text style="stroke:rgb(90,89,206);fill:rgb(90,89,206)"
+            text-anchor="start" x="520" y="456">gss:icon</text>
+        <path d="M418 208C475 184 623 184 642 208" style="fill:none;stroke:rgb(90,89,206)"/>
+        <polygon points="645,212 637,208 643,203" style="fill:rgb(90,89,206);stroke:none"/>
+        <text style="stroke:rgb(90,89,206);fill:rgb(90,89,206)"
+            text-anchor="start" x="524" y="203">gss:object</text>
+        <path d="M413 222C429 243 636 245 649 271" style="fill:none;stroke:rgb(90,89,206)"/>
+        <polygon points="651,275 644,270 651,267" style="fill:rgb(90,89,206);stroke:none"/>
+        <path d="M426 378C469 348 581 331 649 302" style="fill:none;stroke:rgb(90,89,206)"/>
+        <text style="stroke:rgb(90,89,206);fill:rgb(90,89,206)"
+            text-anchor="start" x="500" y="328">gss:predicate</text>
+        <polygon points="654,300 648,307 645,299" style="fill:rgb(90,89,206);stroke:none"/>
+        <path d="M419 390C476 414 615 404 647 387" style="fill:none;stroke:rgb(90,89,206)"/>
+        <text style="stroke:rgb(90,89,206);fill:rgb(90,89,206)"
+            text-anchor="start" x="508" y="396">gss:object</text>
+        <text style="stroke:rgb(90,89,206);fill:rgb(90,89,206)"
+            text-anchor="start" x="499" y="261">gss:predicate</text>
+        <polygon points="651,385 646,392 642,385" style="fill:rgb(90,89,206);stroke:none"/>
+        <ellipse cx="819" cy="253" rx="48" ry="24" style="fill:rgb(115,191,115);stroke:rgb(66,105,66)"/>
+        <text style="stroke:rgb(66,105,66);fill:rgb(66,105,66)"
+            text-anchor="start" x="779" y="256">foaf:Organization</text>
+        <path d="M714 212C759 213 789 219 810 229" style="fill:none;stroke:rgb(90,89,206)"/>
+        <polygon points="815,231 806,231 809,224" style="fill:rgb(90,89,206);stroke:none"/>
+        <text style="stroke:rgb(90,89,206);fill:rgb(90,89,206)"
+            text-anchor="start" x="751" y="207">gss:value</text>
+        <ellipse cx="816" cy="350" rx="36" ry="24" style="fill:rgb(115,191,115);stroke:rgb(66,105,66)"/>
+        <text style="stroke:rgb(66,105,66);fill:rgb(66,105,66)"
+            text-anchor="start" x="791" y="353">foaf:Image</text>
+        <path d="M714 375C747 392 805 397 807 373" style="fill:none;stroke:rgb(90,89,206)"/>
+        <polygon points="807,368 811,376 803,376" style="fill:rgb(90,89,206);stroke:none"/>
+        <text style="stroke:rgb(90,89,206);fill:rgb(90,89,206)"
+            text-anchor="start" x="748" y="381">gss:value</text>
+    </g>
+</svg>
+<!-- Generated by ZVTM (Zoomable Visual Transformation Machine) v0.8.2 http://zvtm.sourceforge.net-->

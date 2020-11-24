@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="/2002/06/rdfs2html.xsl" type="application/xml"?>
+
+
+<rdf:RDF xmlns="http://www.w3.org/2001/11/IsaViz/graphstylesheets#"
+    xmlns:con="http://www.w3.org/2000/10/swap/pim/contact#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:gss="http://www.w3.org/2001/11/IsaViz/graphstylesheets#"
+    xmlns:log="http://www.w3.org/2000/10/swap/log#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:s="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+    <SortOption rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sorting by the order of items in the sequence.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns"/>
+    </SortOption>
+
+    <owl:Ontology rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets">
+        <dc:creator>
+           <con:Person>
+            <con:fullName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ryan Lee</con:fullName>
+            <con:mailbox rdf:resource="mailto:ryanlee@w3.org"/>
+           </con:Person>
+        </dc:creator>
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IsaViz Graph Style Sheet Ontology</dc:description>
+        <dc:language>en</dc:language>
+        <dc:publisher rdf:datatype="http://www.w3.org/2001/XMLSchema#string">World Wide Web Consortium (W3C)</dc:publisher>
+        <dc:relation rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets/gssmanual.html"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IsaViz Graph Style Sheet Ontology</s:label>
+        <s:seeAlso rdf:resource="http://www.w3.org/2001/11/IsaViz/"/>
+    </owl:Ontology>
+
+    <Alignment rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Above">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Position text above its representation.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Above</s:label>
+    </Alignment>
+
+    <owl:Class rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Alignment">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Various alignments of text.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alignment</s:label>
+        <owl:oneOf rdf:parseType="Collection">
+            <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Center"/>
+            <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Above"/>
+            <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Below"/>
+            <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Left"/>
+            <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Right"/>
+        </owl:oneOf>
+    </owl:Class>
+
+    <Alignment rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Below">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Position text below its representation.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Below</s:label>
+    </Alignment>
+
+    <Alignment rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Center">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Position text in the center of its representation.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Center</s:label>
+    </Alignment>
+
+    <Polygon rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Circle">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Circle shape</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Circle</s:label>
+    </Polygon>
+
+    <Polygon rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Diamond">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Diamond shape</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Diamond</s:label>
+    </Polygon>
+
+    <owl:Class rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#DisplayStyle">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Controls displaying of a resource.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Display Style</s:label>
+        <owl:oneOf rdf:parseType="Collection">
+            <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#None"/>
+        </owl:oneOf>
+    </owl:Class>
+
+    <Polygon rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Ellipse">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ellipse shape</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ellipse</s:label>
+    </Polygon>
+
+    <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Fetch">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specialized resource for use with gss:icon to fetch the image at the given resource's URI.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fetch</s:label>
+    </owl:Thing>
+
+    <VisibilityStyle rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Hidden">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hidden visibility</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hidden</s:label>
+    </VisibilityStyle>
+
+    <owl:Class rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#LayoutForm">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A structure for laying out a graph.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Layout Form</s:label>
+        <owl:oneOf rdf:parseType="Collection">
+            <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#NodeAndArc"/>
+            <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table"/>
+        </owl:oneOf>
+    </owl:Class>
+
+    <Alignment rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Left">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Position text to the left of its representation without overlapping the border.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Left</s:label>
+    </Alignment>
+
+    <owl:Class rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Literal">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A generic, untyped literal, used as a selector.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Literal</s:label>
+	<s:subClassOf rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Selector"/>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#style"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#value"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#datatype"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#objectOfStatement"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#layout"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#visibility"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#display"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#sortPropertiesBy"/>
+        </s:subClassOf>
+    </owl:Class>
+
+    <SortOption rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Name">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sorting by name in alphabetical order.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Name</s:label>
+    </SortOption>
+
+    <SortOption rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#NameReversed">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sorting by name in reverse alphabetical order.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Name Reversed</s:label>
+    </SortOption>
+
+    <SortOption rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Namespace">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sorting by namespace in alphabetical order.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Namespace</s:label>
+    </SortOption>
+
+    <SortOption rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#NamespaceReversed">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sorting order with namespaces in reverse alphabetical order.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Namespace Reversed</s:label>
+    </SortOption>
+
+    <LayoutForm rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#NodeAndArc">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nodes and arcs representation of an RDF model, the default representation.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Node And Arc</s:label>
+    </LayoutForm>
+
+    <DisplayStyle rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#None">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Displays nothing.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</s:label>
+    </DisplayStyle>
+
+    <Polygon rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Octagon">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Octagon shape</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Octagon</s:label>
+    </Polygon>
+
+    <owl:Class rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#PlainLiterals">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Special class denoting untyped literals, can be usedas the object of gss:datatype.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Plain Literals</s:label>
+        <s:seeAlso rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#datatype"/>
+        <s:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Polygon">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shape given to represent a resource.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Polygon</s:label>
+        <owl:unionOf rdf:parseType="Collection">
+                <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Ellipse"/>
+                <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Rectangle"/>
+                <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#RoundRectangle"/>
+                <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Circle"/>
+                <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Diamond"/>
+                <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Octagon"/>
+                <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#TriangleNorth"/>
+                <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#TriangleSouth"/>
+                <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#TriangleEast"/>
+                <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#TriangleWest"/>
+
+            <owl:Thing rdf:about="http://www.w3.org/2001/XMLSchema#string"/>
+        </owl:unionOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Property">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A generic RDF property, used as a selector.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Property</s:label>
+        <s:subClassOf rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Selector"/>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#style"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#uriEquals"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#uriStartsWith"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#predicateOfStatement"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#layout"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#visibility"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#display"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#sortPropertiesBy"/>
+        </s:subClassOf>
+    </owl:Class>
+
+    <Polygon rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Rectangle">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rectangle shape</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rectangle</s:label>
+    </Polygon>
+
+    <owl:Class rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Resource">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A generic RDF resource, used as a selector.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Resource</s:label>
+        <s:subClassOf rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Selector"/>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#visibility"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#display"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#sortPropertiesBy"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#style"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#uriEquals"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#uriStartsWith"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#subjectOfStatement"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#objectOfStatement"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#layout"/>
+        </s:subClassOf>
+    </owl:Class>
+
+    <Alignment rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Right">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Position text to the right of its representation without overlapping the border.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Right</s:label>
+    </Alignment>
+
+    <Polygon rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#RoundRectangle">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Round Rectangle shape</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Round Rectangle</s:label>
+    </Polygon>
+
+    <owl:Class rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Selector">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Selects part of a model for styling.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Selector</s:label>
+        <owl:oneOf rdf:parseType="Collection">
+            <owl:Class rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Resource"/>
+            <owl:Class rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Property"/>
+            <owl:Class rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Literal"/>
+        </owl:oneOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#SortOption">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ways to sort a table.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sort Property</s:label>
+        <owl:oneOf rdf:parseType="Collection">
+            <owl:Thing rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"/>
+            <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Name"/>
+            <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#NameReversed"/>
+            <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Namespace"/>
+            <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#NamespaceReversed"/>
+        </owl:oneOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Statement">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A subject-predicate-object triple.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Statement</s:label>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#subject"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#predicate"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#object"/>
+        </s:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#StyleSet">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A set of styling properties.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Style Set</s:label>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#stroke"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#stroke-width"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#stroke-dasharray"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#fill"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#font-family"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#font-size"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#font-weight"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#font-style"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#text-align"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#shape"/>
+        </s:subClassOf>
+        <s:subClassOf rdf:parseType="Resource">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+            <owl:onProperty rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#icon"/>
+        </s:subClassOf>
+    </owl:Class>
+
+    <LayoutForm rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Table">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tabular representation of an RDF model.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Table</s:label>
+    </LayoutForm>
+
+    <Polygon rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#TriangleEast">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Equilateral triangle pointing 'east' shape</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Triangle East</s:label>
+    </Polygon>
+
+    <Polygon rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#TriangleNorth">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Equilateral triangle pointing 'north' shape</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Triangle North</s:label>
+    </Polygon>
+
+    <Polygon rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#TriangleSouth">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Equilateral triangle pointing 'south' shape</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Triangle South</s:label>
+    </Polygon>
+
+    <Polygon rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#TriangleWest">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Equilateral triangle pointing 'west' shape</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Triangle West</s:label>
+    </Polygon>
+
+    <owl:Class rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#VisibilityStyle">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hidden or visible visibility characteristic.</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Visibility Style</s:label>
+        <owl:oneOf rdf:parseType="Collection">
+            <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Visible"/>
+            <owl:Thing rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Hidden"/>
+        </owl:oneOf>
+    </owl:Class>
+
+    <VisibilityStyle rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Visible">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Visible visibility</s:comment>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Visible</s:label>
+    </VisibilityStyle>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#class">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The restricted object has this rdf:type.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">class</s:label>
+        <s:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#datatype">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specifies a constraint on the datatype of the literal(s) to select.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Selector"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">value</s:label>
+        <s:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#display">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Relates a resource to its display.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Selector"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">display</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#DisplayStyle"/>
+    </owl:ObjectProperty>
+
+    <owl:DatatypeProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#fill">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Color for filling in the polygon.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#StyleSet"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fill</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <s:seeAlso rdf:resource="http://www.w3.org/TR/REC-CSS2/"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#font-family">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The type of font to use.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#StyleSet"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">font family</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <s:seeAlso rdf:resource="http://www.w3.org/TR/REC-CSS2/"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#font-size">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The size of font to use.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#StyleSet"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">font size</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <s:seeAlso rdf:resource="http://www.w3.org/TR/REC-CSS2/"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#font-style">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The style (italic or not) of font to use.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#StyleSet"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">font style</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <s:seeAlso rdf:resource="http://www.w3.org/TR/REC-CSS2/"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#font-weight">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The weight of font to use.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#StyleSet"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">font weight</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <s:seeAlso rdf:resource="http://www.w3.org/TR/REC-CSS2/"/>
+    </owl:DatatypeProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#icon">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Replace a resource with a bitmap icon if possible.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#StyleSet"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">icon</s:label>
+        <s:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#layout">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specifies which layout statements with this subject will have</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Selector"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">layout</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#LayoutForm"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#object">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A restriction on the object of a statement (range is either an object or a literal).</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Statement"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">object</s:label>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#objectOfStatement">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The subject of this property will be selected because it is the object of a statement.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Selector"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">object Of Statement</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Statement"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#predicate">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A restriction on the predicate of a statement.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Statement"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">predicate</s:label>
+        <s:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#predicateOfStatement">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The subject of this property will be selected because it is the property of a statement.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Property"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">object Of Statement</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Statement"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#shape">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shape of a resource's representation.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#StyleSet"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">shape</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Polygon"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#sortPropertiesBy">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Describes how to sort a table based on property names.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Resource"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sort Properties By</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#SortOption"/>
+    </owl:ObjectProperty>
+
+    <owl:DatatypeProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#stroke">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Color of the polygon's border.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#StyleSet"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stroke</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <s:seeAlso rdf:resource="http://www.w3.org/TR/REC-CSS2/"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#stroke-dasharray">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Discontinuous line, a comma-separated list of floats</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#StyleSet"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stroke dasharray</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <s:seeAlso rdf:resource="http://www.w3.org/TR/REC-CSS2/"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#stroke-width">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Width of the polygon's border.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#StyleSet"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stroke width</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#style">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Relating a resource to its style.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Selector"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">style</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#StyleSet"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#subject">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A restriction on the subject of a statement.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Statement"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">subject</s:label>
+        <s:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#subjectOfStatement">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The subject of this property will be selected because it is the subject of a statement.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Resource"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">subject Of Statement</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Statement"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#text-align">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Relating a resource to its label placement.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#StyleSet"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">text align</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Alignment"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#uriEquals">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Describes which URI a selected resource should be equal to.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Selector"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uri Equals</s:label>
+        <s:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#uriStartsWith">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Describes what URI fragment a selected resource should begin with.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Selector"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">uri Starts With</s:label>
+        <s:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+    </owl:ObjectProperty>
+
+    <owl:DatatypeProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#value">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specifies an equality constraint on the value of the literal(s) to select.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Selector"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">value</s:label>
+        <s:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2001/11/IsaViz/graphstylesheets#visibility">
+        <s:comment xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A resource's visibility; it is still part of the layout calculation, but may not actually be displayed.</s:comment>
+        <s:domain rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#Selector"/>
+        <s:isDefinedBy rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets"/>
+        <s:label xml:lang="en" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">visibility</s:label>
+        <s:range rdf:resource="http://www.w3.org/2001/11/IsaViz/graphstylesheets#VisibilityStyle"/>
+    </owl:ObjectProperty>
+</rdf:RDF>
